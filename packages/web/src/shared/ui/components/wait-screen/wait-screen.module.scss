@@ -1,0 +1,13 @@
+.wait-screen {
+	&__overlay {
+		@include z-index(overlay);
+
+		background: var(--background-overlay);
+	}
+
+	&__spinner-container {
+		@include center(absolute, both);
+
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+}

@@ -1,0 +1,31 @@
+.header {
+	@include p(2);
+
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: rem(24px);
+	border-bottom: 1px solid var(--tertiary);
+
+	&__container {
+		@include justify-align-flex(center, center);
+
+		gap: rem(32px);
+	}
+
+	&__title {
+		@include text-setting(md);
+	}
+
+	&__title-container {
+		@include justify-align-flex(flex-start, center);
+
+		flex-direction: row;
+		flex: 1;
+	}
+
+	&__actions {
+		display: flex;
+		gap: rem(48px);
+	}
+}

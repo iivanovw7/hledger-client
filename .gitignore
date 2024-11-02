@@ -1,0 +1,33 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+**/node_modules
+
+# service directories (postman tests, samples data and etc.)
+.pnp
+.pnp.js
+
+# linting
+.eslintcache
+.stylelintcache
+
+# production
+**/dist
+**/build
+tmp
+
+# misc
+.env
+.cache
+.turbo
+.idea
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+package-lock.json
+pnpm-lock.yaml
+

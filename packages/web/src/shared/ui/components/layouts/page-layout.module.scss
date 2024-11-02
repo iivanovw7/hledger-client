@@ -1,0 +1,16 @@
+.page-layout {
+	@include sizer(100%);
+	@include z-index(default);
+	@include m(0);
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	position: relative;
+	gap: rem(18px);
+	background-color: var(--background-content);
+
+	&--has-bottom-padding {
+		@include pb(6);
+	}
+}

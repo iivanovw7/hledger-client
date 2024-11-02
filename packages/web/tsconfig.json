@@ -1,0 +1,56 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"strict": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"esModuleInterop": true,
+		"useUnknownInCatchVariables": false,
+		"composite": false,
+		"declarationMap": false,
+		"forceConsistentCasingInFileNames": true,
+		"inlineSources": false,
+		"isolatedModules": true,
+		"skipLibCheck": true,
+		"noUnusedParameters": false,
+		"preserveWatchOutput": true,
+		"experimentalDecorators": true,
+		"resolveJsonModule": true,
+		"removeComments": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"noImplicitAny": false,
+		"baseUrl": ".",
+		"types": [
+			"node",
+			"jsdom",
+			"ramda",
+			"vite/client",
+			"vitest/globals",
+			"unplugin-fonts/client",
+			"vite-plugin-svg-icons/client"
+		],
+		"paths": {
+			"@/*": ["src/*"],
+			"#/*": ["types/*"]
+		}
+	},
+	"include": [
+		"test/**/*.ts",
+		"test/**/*.tsx",
+		"test/**/*.d.ts",
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		"src/**/*.d.ts",
+		"types/**/*.ts",
+		"types/**/*.d.ts",
+		"tool/**/*.d.ts",
+		"tool/**/*.ts",
+		"tool/**/*.tsx",
+		"vite.config.ts"
+	],
+	"exclude": ["**/node_modules/**", "**/dist/**", "**/build/**", "**/*.js", "**/*.cjs", "**/*.mjs"]
+}
