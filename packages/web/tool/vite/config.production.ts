@@ -6,9 +6,11 @@ const vendorList = ["solid-js", "@solidjs/router", "zod", "ramda", "ramda-adjunc
 
 export const getProductionConfig = (): UserConfig => ({
 	build: {
+		assetsInlineLimit: 4096,
 		chunkSizeWarningLimit: 1500,
+		cssCodeSplit: true,
 		emptyOutDir: true,
-		minify: true,
+		minify: "esbuild",
 		outDir: `${pathResolve("build/dist")}/`,
 		reportCompressedSize: false,
 		rollupOptions: {
@@ -16,13 +18,26 @@ export const getProductionConfig = (): UserConfig => ({
 			maxParallelFileOps: 3,
 			output: {
 				manualChunks: (packagePath: string) => {
-					let package_ = packagePath.split("/").reverse();
-					let packageName = package_[package_.indexOf("node_modules") - 1];
+					if (packagePath.includes("node_modules")) {
+						for (let package_ of vendorList) {
+							if (packagePath.includes(package_)) {
+								return `vendor_${package_}`;
+							}
+						}
 
-					return packageName && vendorList.includes(packageName) ? "vendors" : packageName;
+						return "vendor";
+					}
+
+					if (packagePath.includes("src/shared/ui/components/index.ts")) {
+						return "components";
+					}
+
+					return null;
 				},
 			},
 		},
+		sourcemap: false,
+		target: "esnext",
 	},
 	server: {
 		proxy: {

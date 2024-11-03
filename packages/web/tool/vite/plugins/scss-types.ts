@@ -8,7 +8,7 @@ import prettier from "prettier";
 import * as sass from "sass";
 import { createLogger } from "vite";
 
-import { capitalize, getFileName, resolveAlias, toCamelCase } from "../utils";
+import { capitalize, getFileName, pathResolve, resolveAlias, toCamelCase } from "../utils";
 
 export type ConfigScssTypesPluginOptions = {
 	preprocessorConfig: {
@@ -119,7 +119,7 @@ const generateDTS = async (file: string, css: string) => {
 		export = ${moduleName};
 	`;
 
-	let prettierConfig = await prettier.resolveConfig(process.cwd());
+	let prettierConfig = await prettier.resolveConfig(pathResolve("./prettierrc.cjs"));
 	let formatted = await prettier.format(typeDefinition, { ...prettierConfig, parser: "typescript" });
 
 	await fs.writeFile(typesFile, formatted, "utf8");

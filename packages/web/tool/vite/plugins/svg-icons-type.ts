@@ -29,8 +29,7 @@ export const configSvgIconsTypePlugin = (): Plugin => {
 				.map((file) => path.parse(file).name);
 
 			let typeDefinition = `${COMMENT} export type IconName = ${svgFiles.map(wrapString).join(" | ")};`;
-
-			let prettierConfig = await prettier.resolveConfig(process.cwd());
+			let prettierConfig = await prettier.resolveConfig(pathResolve("./prettierrc.cjs"));
 
 			typeDefinition = await prettier.format(typeDefinition, {
 				...prettierConfig,
