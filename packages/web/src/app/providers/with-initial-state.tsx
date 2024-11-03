@@ -1,7 +1,7 @@
-import { useAccountsStore } from "@/entities";
+import { useAccountsStore, withAccountsStore } from "@/entities";
 
 export const withInitialState = (Cmp: ParentComponent): Component => {
-	return (properties) => {
+	return withAccountsStore((properties) => {
 		let { actions: accountActions } = useAccountsStore();
 
 		createEffect(async () => {
@@ -9,5 +9,5 @@ export const withInitialState = (Cmp: ParentComponent): Component => {
 		});
 
 		return <Cmp {...properties} />;
-	};
+	});
 };

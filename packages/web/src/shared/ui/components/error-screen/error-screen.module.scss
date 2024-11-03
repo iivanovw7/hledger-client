@@ -5,8 +5,8 @@
 	@include pb(2);
 
 	flex: 1;
-	flex-direction: column;
 	flex-flow: column-wrap;
+	flex-direction: column;
 	transform: translate(-50%, -50%) scale(0.8);
 	margin: 0 auto;
 	width: 60vw;

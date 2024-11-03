@@ -1,3 +1,5 @@
+import type { Color } from "#/styles";
+
 import { bem } from "@/shared";
 
 import css from "./spinner.module.scss";
@@ -9,7 +11,7 @@ export type SpinnerProperties = {
 	class?: string;
 	containerClass?: string;
 	ref?: Accessor<HTMLDivElement | undefined>;
-	variant: "primary" | "secondary";
+	variant: Color;
 };
 
 export const Spinner = (properties: SpinnerProperties) => (
@@ -18,6 +20,7 @@ export const Spinner = (properties: SpinnerProperties) => (
 			class={cls.spinner.block({
 				primary: properties.variant === "primary",
 				secondary: properties.variant === "secondary",
+				tertiary: properties.variant === "tertiary",
 			})}
 			fill="none"
 			height="200"

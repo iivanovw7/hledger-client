@@ -3,7 +3,6 @@
 @use "sass:map";
 @use "sass:list";
 @use "sass:math";
-
 @use "utils" as *;
 
 @mixin position($position: absolute, $offsets: 0) {
@@ -31,9 +30,11 @@
 	@if $axis == "both" or $axis == "vertical" {
 		top: 50%;
 	}
+
 	@if $axis == "both" or $axis == "horizontal" {
 		left: 50%;
 	}
+
 	transform: if($axis == "horizontal", translateX(-50%), if($axis == "both", translateX(-50%), null))
 		if($axis == "vertical", translateY(-50%), if($axis == "both", translateY(-50%), null));
 }

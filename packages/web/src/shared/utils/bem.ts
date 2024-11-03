@@ -7,27 +7,45 @@ import type { ToCamelCase } from "./string";
 
 import { toCamelCase } from "./string";
 
+// Helper to define block with a single class name
+type ClassNameWithSingleModifier<Block extends string, Modifier extends string> = {
+	[B in Block as ToCamelCase<B>]: {
+		__modifiers__: { [M in Modifier as ToCamelCase<M>]: any };
+	};
+};
+
+// Helper to define block and element with a modifier
+type ClassNameWithElementAndModifier<Block extends string, Element extends string, Modifier extends string> = {
+	[B in Block as ToCamelCase<B>]: {
+		[E in Element as ToCamelCase<E>]: {
+			__modifiers__: { [M in Modifier as ToCamelCase<M>]: any };
+		};
+	};
+};
+
+// Helper to define block and element without modifier
+type ClassNameWithElement<Block extends string, Element extends string> = {
+	[B in Block as ToCamelCase<B>]: {
+		[E in Element as ToCamelCase<E>]: {
+			__className__: `${Block}__${Element}`;
+		};
+	};
+};
+
+// Helper to define a single block without modifier or element
+type ClassNameWithoutElement<Block> = {
+	[B in Block as ToCamelCase<B>]: { __className__: Block };
+};
+
 type ParseClassNames<T> = UnionToIntersection<
 	{
-		[ClassName in T as 0]: ClassName extends `${infer BlockOrElement}--${infer Modifier}`
-			? {
-					[BorE in BlockOrElement as 0]: BorE extends `${infer Block}__${infer Element}`
-						? {
-								[B in Block as ToCamelCase<B>]: {
-									[E in Element as ToCamelCase<E>]: {
-										__modifiers__: { [M in Modifier as ToCamelCase<M>]: any };
-									};
-								};
-							}
-						: {
-								[B in BorE as ToCamelCase<B>]: {
-									__modifiers__: { [M in Modifier as ToCamelCase<M>]: any };
-								};
-							};
-				}[0]
-			: ClassName extends `${infer Block}__${infer Element}`
-				? { [B in Block as ToCamelCase<B>]: { [E in Element as ToCamelCase<E>]: { __className__: ClassName } } }
-				: { [B in ClassName as ToCamelCase<B>]: { __className__: ClassName } };
+		[ClassName in T as 0]: ClassName extends `${infer Block}__${infer Element}--${infer Modifier}`
+			? ClassNameWithElementAndModifier<Block, Element, Modifier>
+			: ClassName extends `${infer Block}--${infer Modifier}`
+				? ClassNameWithSingleModifier<Block, Modifier>
+				: ClassName extends `${infer Block}__${infer Element}`
+					? ClassNameWithElement<Block, Element>
+					: ClassNameWithoutElement<ClassName>;
 	}[0]
 >;
 

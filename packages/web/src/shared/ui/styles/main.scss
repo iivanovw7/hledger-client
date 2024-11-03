@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-@use "./_themes" as *;
-@use "./_vendors" as *;
-
-@use "./base" as *;
+@use "./themes" as *;
+@use "./vendors" as *;
+@use "./common" as *;

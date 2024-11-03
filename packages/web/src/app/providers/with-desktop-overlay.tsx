@@ -1,12 +1,10 @@
 import { ErrorScreen, useMediaQuery } from "@/shared";
 
 export const withDesktopOverlay = (Cmp: ParentComponent): Component => {
-	let isDesktop = useMediaQuery("(min-width: 768px)");
-
 	return (properties) => (
 		<>
 			<Cmp {...properties} />
-			<Show when={isDesktop()}>
+			<Show when={useMediaQuery("(min-width: 768px)")()}>
 				<ErrorScreen title="Under construction" />
 			</Show>
 		</>

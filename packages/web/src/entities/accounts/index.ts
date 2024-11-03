@@ -1,1 +1,1 @@
-export { useAccountsStore } from "./model";
+export { useAccountsStore, withAccountsStore } from "./model";

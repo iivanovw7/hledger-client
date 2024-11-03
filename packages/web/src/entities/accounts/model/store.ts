@@ -1,7 +1,7 @@
 import type { AccountNameListResponse } from "#/api";
 import type { Voidable } from "#/utils";
 
-import { getLogger, hledgerWebApi, makeApiRequest, settingsStore } from "@/shared";
+import { getLogger, hledgerWebApi, makeApiRequest, settingsStore, withLocalStore } from "@/shared";
 
 type AccountsStoreState = {
 	accountNames: AccountNameListResponse;
@@ -18,33 +18,33 @@ export type AccountsStore = {
 
 const logger = getLogger("Account Store");
 
-const [state, setState] = createStore<AccountsStoreState>({
-	accountNames: [],
-});
+const createAccountsStore = (): AccountsStore => {
+	let [state, setState] = createStore<AccountsStoreState>({
+		accountNames: [],
+	});
 
-const actions: AccountsStoreActions = {
-	loadAccountNames: async () => {
-		return makeApiRequest({
-			onRequestError: (errorData) => {
-				logger.error("Failed to load account names.");
+	let actions: AccountsStoreActions = {
+		loadAccountNames: async () => {
+			return makeApiRequest({
+				onRequestError: (errorData) => {
+					logger.error("Failed to load account names.");
 
-				throw errorData;
-			},
-			request: async () => {
-				let accountNames = await hledgerWebApi.getAccountNames();
+					throw errorData;
+				},
+				request: async () => {
+					let accountNames = await hledgerWebApi.getAccountNames();
 
-				setState({ accountNames });
-			},
-			setLoading: settingsStore.actions.setGlobalLoading,
-		});
-	},
+					setState({ accountNames });
+				},
+				setLoading: settingsStore.actions.setGlobalLoading,
+			});
+		},
+	};
+
+	return {
+		actions,
+		state,
+	};
 };
 
-/**
- *	Accounts store constructor.
- *		@returns returns store instance.
- */
-export const useAccountsStore = (): AccountsStore => ({
-	actions,
-	state,
-});
+export const [useAccountsStore, withAccountsStore] = withLocalStore<AccountsStore>(createAccountsStore);

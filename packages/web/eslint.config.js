@@ -67,15 +67,18 @@ export default defineFlatConfig([
 				{
 					customGroups: {
 						type: {
+							ramda: ["ramda", "ramda-adjunct"],
 							solid: ["@solid*", "solid*"],
 						},
 						value: {
+							ramda: ["ramda", "ramda-adjunct"],
 							solid: ["@solid*", "solid*"],
 						},
 					},
 					environment: "node",
 					groups: [
 						"solid",
+						"ramda",
 						"type",
 						["builtin", "external"],
 						"internal-type",

@@ -2,7 +2,7 @@ import type { UserConfig } from "vite";
 
 import { pathResolve } from "./utils";
 
-const vendorList = ["solid-js", "@solidjs/router", "@solid-primitives/storage", "@solid-primitives/utils"];
+const vendorList = ["solid-js", "@solidjs/router", "zod", "ramda", "ramda-adjunct", "axios"];
 
 export const getProductionConfig = (): UserConfig => ({
 	build: {

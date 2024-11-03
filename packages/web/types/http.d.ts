@@ -1,11 +1,3 @@
-/*
-    eslint-disable
-    @typescript-eslint/no-explicit-any,
-    @typescript-eslint/no-redeclare,
-*/
-
-import type { Recordable } from "./utils";
-
 export type RequestOptions = {
 	apiUrl?: string;
 };
@@ -33,9 +25,3 @@ export const HttpStatus = {
 } as const;
 
 export type HttpStatus = (typeof HttpStatus)[keyof typeof HttpStatus];
-
-/*
-    eslint-enable
-    @typescript-eslint/no-explicit-any,
-    @typescript-eslint/no-redeclare,
-*/

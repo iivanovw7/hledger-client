@@ -1,2 +1,2 @@
 export type AccountNameRespose = string;
-export type AccountNameListResponse = Array<AccountNameResponse>;
+export type AccountNameListResponse = AccountNameResponse[];

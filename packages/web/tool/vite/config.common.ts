@@ -25,7 +25,7 @@ const preprocessorConfig = {
 	},
 	options: {
 		scss: {
-			additionalData: `@use "@styles/_abstracts" as *;`,
+			additionalData: `@use "@styles/abstracts" as *;`,
 		},
 	},
 };

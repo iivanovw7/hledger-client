@@ -4,11 +4,12 @@
  *		@module src/shared/utils/axios/Axios
  */
 
+import { clone } from "ramda";
+
 import type { RequestOptions } from "#/http";
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 import axios from "axios";
-import { clone } from "ramda";
 
 import type { CreateAxiosOptions } from "./transform";
 

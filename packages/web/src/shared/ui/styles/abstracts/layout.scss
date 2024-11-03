@@ -1,8 +1,10 @@
+/* stylelint-disable scss/at-if-no-null */
+/* stylelint-disable at-rule-empty-line-before */
+
 @charset "UTF-8";
 
 @use "sass:map";
 @use "sass:list";
-
 @use "sizer" as *;
 
 @mixin justify-align-flex($justify: center, $align: center) {
@@ -43,7 +45,6 @@
 }
 
 @mixin border-box($value: null) {
-	/* stylelint-disable-next-line scss/at-if-no-null */
 	@if not & and $value == null {
 		*,
 		*::before,

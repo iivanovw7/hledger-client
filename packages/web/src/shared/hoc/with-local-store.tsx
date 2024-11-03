@@ -1,10 +1,11 @@
+import type { ParentComponent } from "solid-js";
+
 import type { AnyStore } from "#/common";
-import type { AnyObject } from "#/utils";
 
 export type UseLocalStore<Store extends AnyStore> = () => Store;
 
 export type WithLocalStoreProvider = {
-	<Properties extends AnyObject>(Cmp: ParentComponent<Properties>): Component;
+	(Cmp: ParentComponent): Component;
 };
 
 type Result<Store extends AnyStore> = [
@@ -18,11 +19,13 @@ export const withLocalStore = <Store extends AnyStore>(storeConstructor: () => S
 
 	let useLocalStore = () => useContext<Store>(LocalStoreContext);
 
-	let withLocalStoreProvider = (Cmp) => (properties) => (
-		<LocalStoreContext.Provider value={store}>
-			<Cmp {...properties} />
-		</LocalStoreContext.Provider>
-	);
+	let withLocalStoreProvider = (Cmp: ParentComponent): Component => {
+		return (properties) => (
+			<LocalStoreContext.Provider value={store}>
+				<Cmp {...properties} />
+			</LocalStoreContext.Provider>
+		);
+	};
 
 	return [useLocalStore, withLocalStoreProvider];
 };

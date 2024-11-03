@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-@use "./../_abstracts/typography" as *;
-@use "./../_abstracts/layout" as *;
+@use "./abstracts/typography" as *;
+@use "./abstracts/layout" as *;
 
 * {
 	@include scrollbars(
