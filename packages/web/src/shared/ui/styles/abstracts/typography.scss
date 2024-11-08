@@ -66,3 +66,11 @@ $text-settings: (
 		white-space: nowrap;
 	}
 }
+
+@mixin ellipsis($width: 100%, $display: inline-block) {
+	@include text-overflow(ellipsis, true);
+
+	display: $display;
+	max-width: $width;
+	word-wrap: normal;
+}

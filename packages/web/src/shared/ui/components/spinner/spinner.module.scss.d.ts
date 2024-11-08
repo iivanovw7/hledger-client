@@ -5,11 +5,6 @@ declare namespace SpinnerModuleScssNamespace {
 		"spinner--primary": string;
 		"spinner--secondary": string;
 		"spinner--tertiary": string;
-		print: string;
-		blink: string;
-		"fade-in": string;
-		"fade-out": string;
-		rotation: string;
 	}
 }
 

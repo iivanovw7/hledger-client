@@ -1,0 +1,7 @@
+.transaction-group-record {
+	@include justify-align-flex(space-between);
+	@include text-setting(sm);
+
+	flex-direction: row;
+	width: 100%;
+}

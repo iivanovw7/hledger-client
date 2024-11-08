@@ -5,11 +5,6 @@ declare namespace NavLinkModuleScssNamespace {
 		"nav-link": string;
 		"nav-link__icon-box": string;
 		"nav-link__text": string;
-		print: string;
-		blink: string;
-		"fade-in": string;
-		"fade-out": string;
-		rotation: string;
 	}
 }
 

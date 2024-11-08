@@ -1,8 +1,15 @@
+import { TransactionsGroupList, useTransactionsStore } from "@/entities";
 import { PageLayout } from "@/shared";
-import { Header } from "@/widgets";
+import { Header, HeaderLoader } from "@/widgets";
 
-export const Transactions = () => (
-	<PageLayout>
-		<Header title="Transactions" />
-	</PageLayout>
-);
+export const Transactions = () => {
+	let { state } = useTransactionsStore();
+
+	return (
+		<PageLayout>
+			<Header title="Transactions" />
+			<HeaderLoader subtitle={`${state.transactionsCount} transactions in total`} />
+			<TransactionsGroupList groups={state.transactionsGroups} />
+		</PageLayout>
+	);
+};

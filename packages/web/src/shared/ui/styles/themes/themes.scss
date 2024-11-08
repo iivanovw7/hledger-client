@@ -6,6 +6,18 @@
 
 $theme-variants: (
 	light: (
+		// Theme
+		accent1: palette.get(monokai, accent1),
+		accent2: palette.get(monokai, accent2),
+		accent3: palette.get(monokai, accent3),
+		accent4: palette.get(monokai, accent4),
+		accent5: palette.get(monokai, accent5),
+		accent6: palette.get(monokai, accent6),
+		dimmed1: palette.get(monokai, dimmed1),
+		dimmed2: palette.get(monokai, dimmed2),
+		dimmed3: palette.get(monokai, dimmed3),
+		dimmed4: palette.get(monokai, dimmed4),
+		dimmed5: palette.get(monokai, dimmed5),
 		// Common
 		primary: palette.get(monokai, accent3),
 		secondary: palette.get(monokai, dimmed3),
@@ -15,6 +27,7 @@ $theme-variants: (
 		background-content: palette.get(monokai, dark1),
 		focus: palette.get(blue, 900),
 		divider: palette.get(stone, 500),
+		divider-light: palette.get(monokai, dimmed2),
 		// Navlink
 		nav-link: palette.get(monokai, text),
 		nav-link-hover: palette.get(monokai, accent3),
@@ -31,6 +44,18 @@ $theme-variants: (
 		scrollbar-thumb-border: palette.get(stone, 800),
 	),
 	dark: (
+		// Theme
+		accent1: palette.get(monokai, accent1),
+		accent2: palette.get(monokai, accent2),
+		accent3: palette.get(monokai, accent3),
+		accent4: palette.get(monokai, accent4),
+		accent5: palette.get(monokai, accent5),
+		accent6: palette.get(monokai, accent6),
+		dimmed1: palette.get(monokai, dimmed1),
+		dimmed2: palette.get(monokai, dimmed2),
+		dimmed3: palette.get(monokai, dimmed3),
+		dimmed4: palette.get(monokai, dimmed4),
+		dimmed5: palette.get(monokai, dimmed5),
 		// Common
 		primary: palette.get(monokai, accent3),
 		secondary: palette.get(monokai, dimmed3),
@@ -40,6 +65,7 @@ $theme-variants: (
 		background-content: palette.get(monokai, dark1),
 		focus: palette.get(blue, 600),
 		divider: palette.get(monokai, dimmed4),
+		divider-light: palette.get(monokai, dimmed2),
 		// Navlink
 		nav-link: palette.get(monokai, text),
 		nav-link-hover: palette.get(monokai, accent3),

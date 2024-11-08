@@ -61,8 +61,6 @@ export type ValueOf<T> = T[keyof T];
 
 export type ExtractType<T, U extends T> = T extends U ? T : never;
 
-export type MaybeAccessor<T> = Accessor<T> | T;
-
 export type ConfigurableWindow = {
 	window?: Window;
 };

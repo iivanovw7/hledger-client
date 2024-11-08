@@ -3,11 +3,6 @@
 declare namespace RootLayoutModuleScssNamespace {
 	export interface IRootLayoutModuleScss {
 		"root-layout": string;
-		print: string;
-		blink: string;
-		"fade-in": string;
-		"fade-out": string;
-		rotation: string;
 	}
 }
 

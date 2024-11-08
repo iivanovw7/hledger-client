@@ -68,7 +68,15 @@ export const createPlugins = async (parameters: CreatePluginsParameters) => {
 				"vitest",
 				{
 					from: "solid-js",
-					imports: ["Show", "Match", "For", "createUniqueId", "createResource"],
+					imports: [
+						"Show",
+						"Match",
+						"For",
+						"createUniqueId",
+						"createResource",
+						"createContext",
+						"useContext",
+					],
 				},
 				{
 					from: "solid-js",
@@ -81,6 +89,8 @@ export const createPlugins = async (parameters: CreatePluginsParameters) => {
 						"Signal",
 						"ParentProps",
 						"Setter",
+						"ComponentProps",
+						"ValidComponent",
 					],
 					type: true,
 				},

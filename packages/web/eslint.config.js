@@ -67,17 +67,20 @@ export default defineFlatConfig([
 				{
 					customGroups: {
 						type: {
+							luxon: ["luxon"],
 							ramda: ["ramda", "ramda-adjunct"],
-							solid: ["@solid*", "solid*"],
+							solid: ["@solid*", "solid*", "solid-js/web", "@solid-primitives/*", "solid-presence"],
 						},
 						value: {
+							luxon: ["luxon"],
 							ramda: ["ramda", "ramda-adjunct"],
-							solid: ["@solid*", "solid*"],
+							solid: ["@solid*", "solid*", "solid-js/web", "@solid-primitives/*", "solid-presence"],
 						},
 					},
 					environment: "node",
 					groups: [
 						"solid",
+						"luxon",
 						"ramda",
 						"type",
 						["builtin", "external"],

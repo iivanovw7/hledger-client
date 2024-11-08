@@ -1,7 +1,4 @@
-import { bem } from "@/shared";
-
-import { Overlay } from "../overlay";
-import { Spinner } from "../spinner";
+import { bem, Overlay, Spinner } from "@/shared";
 
 import css from "./wait-screen.module.scss";
 

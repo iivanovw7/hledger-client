@@ -13,10 +13,11 @@ export const getDevelopmentConfig = (): UserConfig => {
 		logLevel: "info",
 		plugins: [basicSsl()],
 		server: {
+			host: true,
 			proxy: {
 				"^(/api)": {
 					changeOrigin: true,
-					rewrite: (path) => path.replace(/^\/api/, ""),
+					rewrite: (path) => path.replace(/^\/api/, "/"),
 					secure: false,
 					target: VITE_HLEDGER_URL,
 				},

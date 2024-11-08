@@ -1,10 +1,12 @@
-import { ErrorScreen, useMediaQuery } from "@/shared";
+import { createMediaQuery } from "@solid-primitives/media";
+
+import { ErrorScreen } from "@/widgets";
 
 export const withDesktopOverlay = (Cmp: ParentComponent): Component => {
 	return (properties) => (
 		<>
 			<Cmp {...properties} />
-			<Show when={useMediaQuery("(min-width: 768px)")()}>
+			<Show when={createMediaQuery("(min-width: 768px)")()}>
 				<ErrorScreen title="Under construction" />
 			</Show>
 		</>

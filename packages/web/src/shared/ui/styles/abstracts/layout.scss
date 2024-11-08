@@ -7,7 +7,7 @@
 @use "sass:list";
 @use "sizer" as *;
 
-@mixin justify-align-flex($justify: center, $align: center) {
+@mixin justify-align-flex($justify: flex-start, $align: flex-start) {
 	display: flex;
 	align-items: $align;
 	justify-content: $justify;

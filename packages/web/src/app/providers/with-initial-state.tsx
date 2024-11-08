@@ -1,11 +1,23 @@
-import { useAccountsStore, withAccountsStore } from "@/entities";
+import { DateTime } from "luxon";
+
+import { compose } from "ramda";
+
+import { useAccountsStore, useTransactionsStore, withAccountsStore, withTransactionsStore } from "@/entities";
+import { settingsStore } from "@/shared";
+
+const withLocalStores = compose(withAccountsStore, withTransactionsStore);
 
 export const withInitialState = (Cmp: ParentComponent): Component => {
-	return withAccountsStore((properties) => {
-		let { actions: accountActions } = useAccountsStore();
+	return withLocalStores((properties) => {
+		let { actions: accountsActions } = useAccountsStore();
+		let { actions: transactionsActions } = useTransactionsStore();
 
 		createEffect(async () => {
-			await accountActions.loadAccountNames();
+			await accountsActions.loadAccountNames();
+			await accountsActions.loadAccounts();
+			await transactionsActions.loadTransactions();
+
+			settingsStore.actions.setUpdatedLast(DateTime.now());
 		});
 
 		return <Cmp {...properties} />;

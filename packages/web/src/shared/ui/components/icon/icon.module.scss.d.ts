@@ -10,11 +10,6 @@ declare namespace IconModuleScssNamespace {
 		"icon-box--size-small": string;
 		"icon-box--size-medium": string;
 		"icon-box--size-large": string;
-		print: string;
-		blink: string;
-		"fade-in": string;
-		"fade-out": string;
-		rotation: string;
 	}
 }
 

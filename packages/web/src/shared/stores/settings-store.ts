@@ -1,4 +1,7 @@
+import type { DateTime } from "luxon";
+
 import type { Theme } from "#/styles";
+import type { Nullable } from "#/utils";
 
 declare global {
 	type IGlobalStore = {
@@ -8,6 +11,7 @@ declare global {
 
 type SettingsSoreState = {
 	theme: Theme;
+	updatedLast: Nullable<DateTime>;
 	waitQueue: number;
 };
 
@@ -15,6 +19,7 @@ type SettingsStoreActions = {
 	completeWait: () => void;
 	setGlobalLoading: (isLoading: boolean) => void;
 	setTheme: (theme: Theme) => void;
+	setUpdatedLast: (date: Nullable<DateTime>) => void;
 	startWait: () => void;
 	stopWait: () => void;
 };
@@ -27,6 +32,7 @@ export type SettingsStore = {
 const createSettingsStore = (): SettingsStore => {
 	let [state, setState] = createStore<SettingsSoreState>({
 		theme: "dark",
+		updatedLast: null,
 		waitQueue: 0,
 	});
 
@@ -34,6 +40,12 @@ const createSettingsStore = (): SettingsStore => {
 		setState(({ waitQueue }) => ({
 			waitQueue: waitQueue + 1,
 		}));
+	};
+
+	let setUpdatedLast = (updatedLast: Nullable<DateTime>) => {
+		setState({
+			updatedLast,
+		});
 	};
 
 	let stopWait = () => {
@@ -64,6 +76,7 @@ const createSettingsStore = (): SettingsStore => {
 			setTheme: (theme: Theme) => {
 				setState("theme", theme);
 			},
+			setUpdatedLast,
 			startWait,
 			stopWait,
 		},

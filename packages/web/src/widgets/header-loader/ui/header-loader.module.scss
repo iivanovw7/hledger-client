@@ -1,0 +1,18 @@
+.header-loader {
+	@include px(2);
+	@include pt(1);
+	@include justify-align-flex(center, flex-start);
+
+	flex-direction: column;
+	border-top: rem(2px) solid transparent;
+
+	&__text {
+		font-weight: bold;
+	}
+
+	&__text,
+	&__text-date,
+	&__subtitle {
+		@include text-setting(xs);
+	}
+}

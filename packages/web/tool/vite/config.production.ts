@@ -2,7 +2,7 @@ import type { UserConfig } from "vite";
 
 import { pathResolve } from "./utils";
 
-const vendorList = ["solid-js", "@solidjs/router", "zod", "ramda", "ramda-adjunct", "axios"];
+const vendorList = ["solid-js", "@solidjs/router", "zod", "ramda", "ramda-adjunct", "axios", "@kobalte/core"];
 
 export const getProductionConfig = (): UserConfig => ({
 	build: {
@@ -21,7 +21,7 @@ export const getProductionConfig = (): UserConfig => ({
 					if (packagePath.includes("node_modules")) {
 						for (let package_ of vendorList) {
 							if (packagePath.includes(package_)) {
-								return `vendor_${package_}`;
+								return `vendor-${package_}`;
 							}
 						}
 
@@ -29,7 +29,7 @@ export const getProductionConfig = (): UserConfig => ({
 					}
 
 					if (packagePath.includes("src/shared/ui/components/index.ts")) {
-						return "components";
+						return "vendor-components";
 					}
 
 					return null;
@@ -40,11 +40,12 @@ export const getProductionConfig = (): UserConfig => ({
 		target: "esnext",
 	},
 	server: {
+		host: true,
 		proxy: {
 			"^(/api)": {
 				changeOrigin: true,
-				rewrite: (path) => path.replace(/^\/api/, ""),
-				secure: false,
+				rewrite: (path) => path.replace(/^\/api/, "/"),
+				target: "http://localhost:3050",
 			},
 		},
 	},

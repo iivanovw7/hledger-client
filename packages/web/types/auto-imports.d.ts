@@ -68,7 +68,7 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { Accessor, Component, ParentComponent, JSXElement, JSX, Signal, ParentProps, Setter } from 'solid-js'
+  export type { Accessor, Component, ParentComponent, JSXElement, JSX, Signal, ParentProps, Setter, ComponentProps, ValidComponent } from 'solid-js'
   import('solid-js')
   // @ts-ignore
   export type { Mock } from 'vitest'

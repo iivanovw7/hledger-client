@@ -32,6 +32,10 @@ export const getConfig = (env: TConfigEnv) => {
 			 */
 			debounce: 100,
 			/**
+			 * If true, truies to detect transaction direction by account prefix.
+			 */
+			showTransationDirection: true,
+			/**
 			 * Throttle delay in `ms`.
 			 */
 			throttle: 100,

@@ -1,6 +1,4 @@
-import { bem } from "@/shared";
-
-import { Overlay } from "../overlay";
+import { bem, Overlay } from "@/shared";
 
 import css from "./error-screen.module.scss";
 

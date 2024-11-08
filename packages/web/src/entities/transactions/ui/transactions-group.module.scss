@@ -1,0 +1,45 @@
+.transaction-group {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	&__header {
+		@include justify-align-flex(space-between, center);
+		@include pb(1);
+
+		flex-direction: row;
+		width: 100%;
+	}
+
+	&__header-month {
+		color: var(--primary);
+	}
+
+	&__card {
+		@include justify-align-flex;
+		@include p(2);
+		@include mt(2);
+
+		flex-direction: column;
+		background-color: var(--background-primary);
+		border-left: 2px solid var(--divider);
+
+		&--is-income:not(&--is-spending) {
+			border-left: 2px solid var(--accent4);
+		}
+
+		&--is-spending:not(&--is-income) {
+			border-left: 2px solid var(--accent1);
+		}
+	}
+
+	&__card-description {
+		@include pb(1);
+		@include mb(2);
+		@include ellipsis;
+
+		width: 100%;
+		font-weight: bold;
+		border-bottom: 1px solid var(--divider);
+	}
+}

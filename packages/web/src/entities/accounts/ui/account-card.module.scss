@@ -1,0 +1,49 @@
+.account-card {
+	width: 100%;
+	border-left: rem(3px) solid var(--account-card-border-color);
+	background-color: var(--background-primary);
+
+	&__toggle {
+		@include p(0, 2);
+
+		width: 100%;
+	}
+
+	&__content {
+		@include p(1, 2, 2, 3);
+		@include justify-align-flex(flex-start, flex-start);
+
+		flex-direction: column;
+		gap: rem(8px);
+	}
+
+	&__content-item {
+		@include pb(2);
+		@include justify-align-flex(space-between, flex-start);
+
+		flex-direction: row;
+		width: 100%;
+		border-bottom: 1px solid var(--divider);
+	}
+
+	&__content-item-text {
+		@include ellipsis;
+		@include text-setting(sm);
+	}
+
+	&__label {
+		@include justify-align-flex(flex-start, center);
+
+		flex-direction: row;
+		gap: rem(8px);
+	}
+
+	&__label-icon {
+		color: var(--account-card-border-color);
+	}
+
+	&__label-text {
+		@include ellipsis;
+		@include text-setting(base);
+	}
+}

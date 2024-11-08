@@ -25,6 +25,11 @@ const logger = createLogger("info");
 
 const wrapString = (value: string) => `'${value}': string;`;
 
+/**
+ *	Generates `d.ts` files for css modules.
+ *	@param options - plugin options.
+ *	@returns vite plugin.
+ */
 export const configScssTypesPlugin = (options: ConfigScssTypesPluginOptions): Plugin => {
 	let {
 		preprocessorConfig: {
@@ -35,39 +40,61 @@ export const configScssTypesPlugin = (options: ConfigScssTypesPluginOptions): Pl
 		},
 	} = options;
 
+	let resolvedAdditionalScssData = resolveAdditionalData(additionalData, stylesAlias);
+
 	return {
 		apply: "serve",
 		buildStart: async () => {
 			let scssFiles = await findScssFiles(path.resolve(process.cwd(), "src"));
 
-			let resolvedAdditionalScssData = additionalData
-				.split("\n")
-				.map((line) => {
-					let match = line.match(/@use ["']([^"']+)["']/);
-					if (match) {
-						let resolvedPath = resolveAlias(match[1], stylesAlias);
-
-						return line.replace(match[1], resolvedPath);
-					}
-
-					return line;
-				})
-				.join("\n");
-
 			for (let file of scssFiles) {
 				let fileContent = await fs.readFile(file, "utf8");
-				let combinedContent = resolvedAdditionalScssData + fileContent;
 
-				let compiledCss = sass.compileString(combinedContent, {
-					loadPaths: [path.resolve(process.cwd(), "src")],
-					style: "expanded",
-				}).css;
+				if (!fileContent) continue;
+
+				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData);
+
+				await generateDTS(file, compiledCss);
+			}
+		},
+		handleHotUpdate: async ({ file }) => {
+			if (file.endsWith("module.scss")) {
+				let fileContent = await fs.readFile(file, "utf8");
+
+				if (!fileContent) return;
+
+				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData);
 
 				await generateDTS(file, compiledCss);
 			}
 		},
 		name: "vite-plugin-scss-types",
 	};
+};
+
+const resolveAdditionalData = (data: string, alias: Alias) => {
+	return data
+		.split("\n")
+		.map((line) => {
+			let match = line.match(/@use ["']([^"']+)["']/);
+			if (match) {
+				let resolvedPath = resolveAlias(match[1], alias);
+
+				return line.replace(match[1], resolvedPath);
+			}
+
+			return line;
+		})
+		.join("\n");
+};
+
+const compileCss = (fileContent: string, resolvedAdditionalScssData: string) => {
+	let combinedContent = resolvedAdditionalScssData + fileContent;
+
+	return sass.compileString(combinedContent, {
+		loadPaths: [path.resolve(process.cwd(), "src")],
+		style: "expanded",
+	}).css;
 };
 
 const findScssFiles = async (directory: string): Promise<string[]> => {

@@ -1,4 +1,5 @@
-import { settingsStore, WaitScreen } from "@/shared";
+import { settingsStore } from "@/shared";
+import { WaitScreen } from "@/widgets";
 
 export const withWaitScreen = (Cmp: ParentComponent): Component => {
 	return (properties) => (

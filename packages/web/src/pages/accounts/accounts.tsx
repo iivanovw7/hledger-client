@@ -1,8 +1,15 @@
+import { AccountCardList, useAccountsStore } from "@/entities";
 import { PageLayout } from "@/shared";
-import { Header } from "@/widgets";
+import { Header, HeaderLoader } from "@/widgets";
 
-export const Accounts = () => (
-	<PageLayout>
-		<Header title="Accounts" />
-	</PageLayout>
-);
+export const Accounts = () => {
+	let { state } = useAccountsStore();
+
+	return (
+		<PageLayout>
+			<Header title="Accounts" />
+			<HeaderLoader subtitle={`${state.accountsCount} accounts in total`} />
+			<AccountCardList accounts={state.accountRootItems} />
+		</PageLayout>
+	);
+};
