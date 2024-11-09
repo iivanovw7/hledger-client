@@ -22,14 +22,14 @@
 
 		flex-direction: column;
 		background-color: var(--background-primary);
-		border-left: 2px solid var(--divider);
+		border-left: rem(3px) solid var(--divider);
 
 		&--is-income:not(&--is-spending) {
-			border-left: 2px solid var(--accent4);
+			border-left: rem(3px) solid var(--accent4);
 		}
 
 		&--is-spending:not(&--is-income) {
-			border-left: 2px solid var(--accent1);
+			border-left: rem(3px) solid var(--accent1);
 		}
 	}
 

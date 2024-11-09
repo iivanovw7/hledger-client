@@ -9,7 +9,9 @@ let { password, username } = env.credentials;
 const Authorization = `Basic ${btoa(`${username}:${password}`)}`;
 
 export const http = createAxios({
-	requestOptions: {},
+	requestOptions: {
+		apiUrl: env.isProduction ? "/" : "/hledger-api",
+	},
 	transform: {
 		requestInterceptors: (config) => {
 			if (username && password) {

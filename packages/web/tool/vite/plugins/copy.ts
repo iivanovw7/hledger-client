@@ -8,8 +8,8 @@ export const configCopyPlugin = () => {
 	return viteStaticCopy({
 		targets: [
 			{
-				dest: "assets",
-				src: `${pathResolve("assets/img")}/`,
+				dest: "public",
+				src: `${pathResolve("public/img")}/`,
 			},
 		],
 	}) as PluginOption;

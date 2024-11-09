@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"directories": {
-		"assets": "assets",
+		"public": "public",
 		"types": "types",
 		"tool": "tool",
 		"build": "build",
@@ -14,7 +14,7 @@
 	"scripts": {
 		"build": "NODE_ENV=production vite build",
 		"build:analyze": "vite build --mode analyze",
-		"serve": "vite build && vite preview",
+		"serve": "vite build && vite preview --port 3050 --host",
 		"clean": "rimraf .turbo node_modules build dist",
 		"test:typecheck": "tsc --noEmit",
 		"test:eslint": "eslint 'src/**/*.{ts,tsx}' --cache --cache-location node_modules/.cache/.eslintcache --cache-strategy content",
@@ -91,6 +91,7 @@
 		"vite-plugin-compression": "0.5.1",
 		"vite-plugin-dynamic-import": "1.6.0",
 		"vite-plugin-html": "3.2.2",
+		"vite-plugin-pwa": "0.20.5",
 		"vite-plugin-solid": "2.10.2",
 		"vite-plugin-static-copy": "2.0.0",
 		"vite-plugin-svg-icons": "2.0.1",

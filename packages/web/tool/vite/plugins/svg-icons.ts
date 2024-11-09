@@ -4,7 +4,7 @@ import { pathResolve } from "../utils";
 
 export const configSvgIconsPlugin = (isBuild: boolean) => {
 	return createSvgIconsPlugin({
-		iconDirs: [`${pathResolve("assets/icons")}/`],
+		iconDirs: [`${pathResolve("public/icons")}/`],
 		inject: "body-last",
 		svgoOptions: isBuild,
 		symbolId: "icon-[dir]-[name]",

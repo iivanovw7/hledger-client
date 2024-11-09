@@ -11,6 +11,7 @@ import type { ConfigScssTypesPluginOptions } from "./scss-types";
 import { pathResolve } from "../utils";
 import { configCompressPlugin } from "./compress";
 import { configCopyPlugin } from "./copy";
+import { configPwaPlugin } from "./pwa";
 import { configScssTypesPlugin } from "./scss-types";
 import { configSvgIconsPlugin } from "./svg-icons";
 import { configSvgIconsTypePlugin } from "./svg-icons-type";
@@ -43,7 +44,7 @@ export const createPlugins = async (parameters: CreatePluginsParameters) => {
 		configSvgIconsPlugin(isBuild),
 		configScssTypesPlugin({ preprocessorConfig }),
 		imagetools({
-			include: `${pathResolve("assets/img/**/*.{jpeg,jpg,png,webp,gif}?")}/`,
+			include: `${pathResolve("public/img/**/*.{jpeg,jpg,png,webp,gif}?")}/`,
 		}) as PluginOption,
 		fonts({
 			google: {
@@ -110,6 +111,7 @@ export const createPlugins = async (parameters: CreatePluginsParameters) => {
 	if (isBuild) {
 		plugins.push(configCompressPlugin({ compress }));
 		plugins.push(configCopyPlugin());
+		plugins.push(configPwaPlugin());
 	}
 
 	return plugins;

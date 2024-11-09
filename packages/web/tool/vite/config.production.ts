@@ -39,14 +39,4 @@ export const getProductionConfig = (): UserConfig => ({
 		sourcemap: false,
 		target: "esnext",
 	},
-	server: {
-		host: true,
-		proxy: {
-			"^(/api)": {
-				changeOrigin: true,
-				rewrite: (path) => path.replace(/^\/api/, "/"),
-				target: "http://localhost:3050",
-			},
-		},
-	},
 });

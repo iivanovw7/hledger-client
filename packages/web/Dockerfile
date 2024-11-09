@@ -12,9 +12,9 @@ COPY . .
 
 RUN pnpm run build
 
-EXPOSE 80
 EXPOSE 443
+EXPOSE 80
 EXPOSE 8080
-EXPOSE 4173
+EXPOSE 3050
 
 CMD ["pnpm", "run", "serve"]

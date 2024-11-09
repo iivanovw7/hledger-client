@@ -6,19 +6,19 @@ import { http } from "./hledger-web.client";
 export const hledgerWebApi = {
 	getAccountNames: async (config: AxiosRequestConfig = {}) => {
 		return http.get<AccountNameListResponse>({
-			url: "/api/accountnames",
+			url: "/accountnames",
 			...config,
 		});
 	},
 	getAccounts: async (config: AxiosRequestConfig = {}) => {
 		return http.get<AccountsResponse>({
-			url: "/api/accounts",
+			url: "/accounts",
 			...config,
 		});
 	},
 	getTransactions: async (config: AxiosRequestConfig = {}) => {
 		return http.get<TransactionsResponse>({
-			url: "/api/transactions",
+			url: "/transactions",
 			...config,
 		});
 	},
