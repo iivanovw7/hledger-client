@@ -10,7 +10,7 @@ const Authorization = `Basic ${btoa(`${username}:${password}`)}`;
 
 export const http = createAxios({
 	requestOptions: {
-		apiUrl: env.isProduction ? "/" : "/hledger-api",
+		apiUrl: "/client/api",
 	},
 	transform: {
 		requestInterceptors: (config) => {

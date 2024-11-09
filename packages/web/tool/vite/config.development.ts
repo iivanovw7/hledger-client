@@ -15,9 +15,9 @@ export const getDevelopmentConfig = (): UserConfig => {
 		server: {
 			host: true,
 			proxy: {
-				"^(/hledger-api)": {
+				"/client/api": {
 					changeOrigin: true,
-					rewrite: (path) => path.replace(/^\/hledger-api/, ""),
+					rewrite: (path) => path.replace(/^\/client\/api/, ""),
 					secure: false,
 					target: VITE_HLEDGER_URL,
 				},

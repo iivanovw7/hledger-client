@@ -1,4 +1,4 @@
-- Endpoints sample config
+-   Endpoints sample config
 
 ```nginx
         location / {

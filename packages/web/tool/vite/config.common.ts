@@ -38,6 +38,7 @@ export const getCommonConfig = async (mode: string, command: string): Promise<Us
 	let { VITE_BUILD_COMPRESS = "none", VITE_ENABLE_ANALYZE = "false" } = env;
 
 	return {
+		base: "/client/",
 		css: {
 			modules: {
 				generateScopedName: "[local]",

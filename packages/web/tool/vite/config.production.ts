@@ -11,7 +11,7 @@ export const getProductionConfig = (): UserConfig => ({
 		cssCodeSplit: true,
 		emptyOutDir: true,
 		minify: "esbuild",
-		outDir: `${pathResolve("build/dist")}/`,
+		outDir: `${pathResolve("build/dist/client")}`,
 		reportCompressedSize: false,
 		rollupOptions: {
 			input: `${pathResolve("index.html")}/`,
