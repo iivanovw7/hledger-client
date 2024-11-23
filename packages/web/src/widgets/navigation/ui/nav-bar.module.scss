@@ -3,12 +3,12 @@
 	@include position(fixed, auto auto 0 auto);
 	@include m(0);
 	@include p(3);
+	@include sizer(100%, null);
 
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	background-color: var(--background-primary);
 	border-top: 1px solid var(--divider);
-	width: 100%;
 	gap: rem(8px);
 
 	&__element {

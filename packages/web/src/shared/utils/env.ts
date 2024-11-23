@@ -21,6 +21,12 @@ export const env = {
 	defaultLocation: isClient ? window.location : undefined,
 	defaultNavigator: isClient ? window.navigator : undefined,
 	defaultWindow: isClient ? window : undefined,
+	getCssVariable: (variable: string) => {
+		// prettier-ignore
+		return getComputedStyle(document.documentElement)
+			.getPropertyValue(variable)
+			.trim();
+	},
 	/**
 	 * Refers to a current document `html` element.
 	 */

@@ -29,7 +29,6 @@ export const menuItemSet: Record<string, MenuItem> = {
 		to: settings,
 	},
 	statistics: {
-		disabled: true,
 		icon: "chart-area",
 		order: 1,
 		text: "Statistics",

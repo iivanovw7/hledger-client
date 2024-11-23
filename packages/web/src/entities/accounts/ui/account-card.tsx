@@ -21,14 +21,20 @@ export const AccountCard = (properties: AccountCardProperties) => (
 				<Icon class={cls.accountCard.labelIcon()} name={properties.account.icon} />
 				<h4 class={cls.accountCard.labelText()}>{capitalize(properties.account.aname)}</h4>
 			</div>
-			<span>{getAiBalance(properties.account)}</span>
+			<span class={cls.accountCard.labelValue()}>
+				<span>{properties.account.aibalance[0]?.acommodity || ""}</span>
+				<span>{getAiBalance(properties.account)}</span>
+			</span>
 		</Collapsible.Trigger>
 		<Collapsible.Content class={cls.accountCard.content()}>
 			<For each={sortByBalance(properties.account.items)}>
 				{(item) => (
 					<div class={cls.accountCard.contentItem()}>
 						<span class={cls.accountCard.contentItemText()}>{getChildItemLabel(item.aname)}</span>
-						<span>{getAiBalance(item)}</span>
+						<span class={cls.accountCard.labelValue()}>
+							<span>{item.aibalance[0]?.acommodity || ""}</span>
+							<span>{getAiBalance(item)}</span>
+						</span>
 					</div>
 				)}
 			</For>

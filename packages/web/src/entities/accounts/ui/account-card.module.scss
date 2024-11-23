@@ -3,10 +3,15 @@
 	border-left: rem(3px) solid var(--account-card-border-color);
 	background-color: var(--background-primary);
 
+	&:focus-within {
+		@include focus-outline;
+	}
+
 	&__toggle {
 		@include p(0, 2);
 
 		width: 100%;
+		margin-top: 1px;
 	}
 
 	&__content {
@@ -36,6 +41,11 @@
 
 		flex-direction: row;
 		gap: rem(8px);
+	}
+
+	&__content-value > span:last-child,
+	&__label-value > span:last-child {
+		@include ml(1);
 	}
 
 	&__label-icon {

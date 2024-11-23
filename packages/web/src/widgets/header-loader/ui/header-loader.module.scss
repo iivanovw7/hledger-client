@@ -1,10 +1,23 @@
 .header-loader {
-	@include px(2);
-	@include pt(1);
+	@include p(2);
 	@include justify-align-flex(center, flex-start);
 
-	flex-direction: column;
+	flex-direction: row;
 	border-top: rem(2px) solid transparent;
+	border-bottom: rem(2px) solid var(--divider-dark);
+
+	&__content {
+		@include justify-align-flex;
+
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	&__controls {
+		@include justify-align-flex(center, center);
+
+		flex-direction: column;
+	}
 
 	&__text {
 		font-weight: bold;

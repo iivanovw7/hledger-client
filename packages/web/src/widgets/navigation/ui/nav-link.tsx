@@ -32,6 +32,7 @@ export const NavLink = (properties: NavLinkProperties) => {
 				})}
 				{...(!!match(properties.href) && {
 					"data-active": "",
+					tabindex: -1,
 				})}
 				href={properties.href}
 				ref={properties.ref}

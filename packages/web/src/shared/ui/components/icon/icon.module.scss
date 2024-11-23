@@ -1,6 +1,10 @@
 .icon {
 	@include center(absolute, both);
 
+	&--size-x-small {
+		@include sizer(rem(16px));
+	}
+
 	&--size-small {
 		@include sizer(rem(20px));
 	}
@@ -20,6 +24,10 @@
 	outline: none;
 	transition: $transition-colors;
 	position: relative;
+
+	&--size-x-small {
+		@include sizer(rem(20px));
+	}
 
 	&--size-small {
 		@include sizer(rem(36px));

@@ -1,7 +1,7 @@
 export type DecimalQuantity = {
 	decimalMantissa: number;
 	decimalPlaces: number;
-	floatingPoint: boolean;
+	floatingPoint: number;
 };
 
 export type AmountStyle = {

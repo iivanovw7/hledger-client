@@ -2,46 +2,12 @@
 
 @use "sass:map";
 @use "sass:list";
+@use "sass:color";
 @use "palette" as palette;
 
 $theme-variants: (
 	light: (
-		// Theme
-		accent1: palette.get(monokai, accent1),
-		accent2: palette.get(monokai, accent2),
-		accent3: palette.get(monokai, accent3),
-		accent4: palette.get(monokai, accent4),
-		accent5: palette.get(monokai, accent5),
-		accent6: palette.get(monokai, accent6),
-		dimmed1: palette.get(monokai, dimmed1),
-		dimmed2: palette.get(monokai, dimmed2),
-		dimmed3: palette.get(monokai, dimmed3),
-		dimmed4: palette.get(monokai, dimmed4),
-		dimmed5: palette.get(monokai, dimmed5),
-		// Common
-		primary: palette.get(monokai, accent3),
-		secondary: palette.get(monokai, dimmed3),
-		tertiary: palette.get(monokai, accent2),
-		background-primary: palette.get(stone, 200),
-		background-overlay: palette.get(monokai, dark2),
-		background-content: palette.get(monokai, dark1),
-		focus: palette.get(blue, 900),
-		divider: palette.get(stone, 500),
-		divider-light: palette.get(monokai, dimmed2),
-		// Navlink
-		nav-link: palette.get(monokai, text),
-		nav-link-hover: palette.get(monokai, accent3),
-		nav-link-disabled: palette.get(monokai, dimmed5),
-		nav-link-active: palette.get(monokai, background),
-		nav-link-active-background: palette.get(monokai, accent3),
-		// Text
-		text-primary: palette.get(stone, 900),
-		text-secondary: palette.get(stone, 500),
-		text-white: palette.get(stone, 100),
-		scrollbar: palette.get(stone, 800),
-		scrollbar-track: palette.get(stone, 600),
-		scrollbar-thumb: palette.get(stone, 600),
-		scrollbar-thumb-border: palette.get(stone, 800),
+		// TODO: Add light monokai theme
 	),
 	dark: (
 		// Theme
@@ -58,14 +24,20 @@ $theme-variants: (
 		dimmed5: palette.get(monokai, dimmed5),
 		// Common
 		primary: palette.get(monokai, accent3),
+		primary-hover: palette.get(monokai, accent3-lighten),
+		primary-disabled: palette.get(monokai, dimmed5),
 		secondary: palette.get(monokai, dimmed3),
+		secondary-hover: palette.get(monokai, dimmed3-lighten),
 		tertiary: palette.get(monokai, accent2),
+		tertiary-hover: palette.get(monokai, accent3-lighten),
 		background-primary: palette.get(monokai, background),
 		background-overlay: palette.get(monokai, dark2),
 		background-content: palette.get(monokai, dark1),
-		focus: palette.get(blue, 600),
+		background-content-lighten: palette.get(monokai, dark1-lighten),
+		focus: palette.get(monokai, accent3),
 		divider: palette.get(monokai, dimmed4),
 		divider-light: palette.get(monokai, dimmed2),
+		divider-dark: palette.get(monokai, dimmed5),
 		// Navlink
 		nav-link: palette.get(monokai, text),
 		nav-link-hover: palette.get(monokai, accent3),
@@ -74,12 +46,17 @@ $theme-variants: (
 		nav-link-active-background: palette.get(monokai, accent3),
 		// Text
 		text-primary: palette.get(monokai, text),
+		text-primary-darken: palette.get(monokai, text-darken),
 		text-secondary: palette.get(stone, 500),
 		text-white: palette.get(stone, 100),
+		text-inversed: palette.get(monokai, text-inversed),
 		scrollbar: palette.get(stone, 600),
 		scrollbar-track: palette.get(stone, 600),
 		scrollbar-thumb: palette.get(stone, 600),
 		scrollbar-thumb-border: palette.get(stone, 800),
+		// Chart
+		chart-label-color: palette.get(monokai, text-darken),
+		chart-grid-color: palette.get(monokai, dimmed5-darken),
 	),
 );
 

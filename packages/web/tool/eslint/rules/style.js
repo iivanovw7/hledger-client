@@ -1,12 +1,5 @@
 export const styleRules = {
-	"array-bracket-spacing": [
-		"error",
-		"never",
-		{
-			arraysInArrays: true,
-			objectsInArrays: true,
-		},
-	],
+	"array-bracket-spacing": "off",
 	"array-callback-return": [
 		"error",
 		{

@@ -1,4 +1,5 @@
 import type { AccountNameListResponse, AccountsResponse } from "#/api";
+import type { LoadingParameters } from "#/common";
 import type { Voidable } from "#/utils";
 
 import { getLogger, hledgerWebApi, makeApiRequest, settingsStore, withLocalStore } from "@/shared";
@@ -7,16 +8,16 @@ import type { AccountRootItem } from "./models";
 
 import { pickAccountRootItems } from "../lib";
 
-type AccountsStoreState = {
+export type AccountsStoreState = {
 	accountNames: AccountNameListResponse;
 	accountRootItems: AccountRootItem[];
 	accounts: AccountsResponse;
 	accountsCount: number;
 };
 
-type AccountsStoreActions = {
-	loadAccountNames: () => Promise<Voidable<true>>;
-	loadAccounts: () => Promise<Voidable<true>>;
+export type AccountsStoreActions = {
+	loadAccountNames: (parameters?: LoadingParameters) => Promise<Voidable<true>>;
+	loadAccounts: (parameters?: LoadingParameters) => Promise<Voidable<true>>;
 };
 
 export type AccountsStore = {
@@ -35,7 +36,7 @@ const createAccountsStore = (): AccountsStore => {
 	});
 
 	let actions: AccountsStoreActions = {
-		loadAccountNames: async () => {
+		loadAccountNames: async (parameters) => {
 			return makeApiRequest({
 				onRequestError: (errorData) => {
 					logger.error("Failed to load account names.");
@@ -47,10 +48,12 @@ const createAccountsStore = (): AccountsStore => {
 
 					setState({ accountNames });
 				},
-				setLoading: settingsStore.actions.setGlobalLoading,
+				...(parameters?.loader && {
+					setLoading: settingsStore.actions.setGlobalLoading(parameters.loader),
+				}),
 			});
 		},
-		loadAccounts: async () => {
+		loadAccounts: async (parameters) => {
 			return makeApiRequest({
 				onRequestError: (errorData) => {
 					logger.error("Failed to load accounts.");
@@ -63,7 +66,9 @@ const createAccountsStore = (): AccountsStore => {
 
 					setState({ accountRootItems, accounts, accountsCount });
 				},
-				setLoading: settingsStore.actions.setGlobalLoading,
+				...(parameters?.loader && {
+					setLoading: settingsStore.actions.setGlobalLoading(parameters.loader),
+				}),
 			});
 		},
 	};

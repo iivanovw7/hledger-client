@@ -1,0 +1,28 @@
+.progress {
+	@include sizer(100%, rem(4px));
+	@include z-index(progress);
+	@include position(fixed, 0 null null 0);
+
+	overflow: hidden;
+	background-color: var(--divider-dark);
+	pointer-events: none;
+	display: none;
+
+	&::before,
+	&::after {
+		@include sizer(33.33%, 100%);
+		@include position(absolute, 0 100% null null);
+
+		background-color: var(--tertiary);
+		animation: progress 3s infinite $cb-transition;
+		content: "";
+	}
+
+	&::after {
+		animation-delay: 1.5s;
+	}
+
+	&--is-visible {
+		display: block;
+	}
+}

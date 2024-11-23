@@ -2,9 +2,9 @@
 	width: 100%;
 	overflow: hidden;
 	border-top: none;
-	animation: collapsible-slide-down 300ms ease-out;
+	animation: collapsible-slide-up 300ms ease-out;
 
-	&:not([data-expanded]) {
-		animation: collapsible-slide-up 300ms ease-out;
+	&[data-expanded] {
+		animation: collapsible-slide-down 300ms ease-out;
 	}
 }

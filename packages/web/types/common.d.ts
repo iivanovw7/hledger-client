@@ -10,3 +10,9 @@ export type FieldValidationResult = {
 	messageDescriptor: ErrorMessage;
 	values?: MessageValues;
 };
+
+export type LoadingType = "progress" | "wait";
+
+export type LoadingParameters = {
+	loader?: LoadingType | null;
+};

@@ -5,8 +5,4 @@
 	display: inline-flex;
 	text-align: left;
 	outline: none;
-
-	&:not([data-disabled]):focus-visible {
-		@include focus-outline;
-	}
 }

@@ -2,6 +2,7 @@
 
 @use "sass:map";
 @use "sass:list";
+@use "sass:color";
 
 $colors: (
 	blue: (
@@ -58,20 +59,29 @@ $colors: (
 	),
 	monokai: (
 		accent1: "#ff6188",
+		accent1-lighten: color.adjust(#ff6188, $lightness: 20%),
 		accent2: "#fc9867",
+		accent2-lighten: color.adjust(#fc9867, $lightness: 20%),
 		accent3: "#ffd866",
+		accent3-lighten: color.adjust(#ffd866, $lightness: 20%),
 		accent4: "#a9dc76",
+		accent4-lighten: color.adjust(#a9dc76, $lightness: 20%),
 		accent5: "#78dce8",
 		accent6: "#ab9df2",
 		background: "#2d2a2e",
 		dark1: "#221f22",
+		dark1-lighten: color.adjust(#221f22, $lightness: 7%),
 		dark2: "#19181a",
 		dimmed1: "#c1c0c0",
 		dimmed2: "#939293",
 		dimmed3: "#727072",
+		dimmed3-lighten: color.adjust(#727072, $lightness: 20%),
 		dimmed4: "#5b595c",
 		dimmed5: "#403e41",
+		dimmed5-darken: color.adjust(#403e41, $lightness: -5%),
 		text: "#fcfcfa",
+		text-darken: color.adjust(#fcfcfc, $lightness: -40%),
+		text-inversed: "#0f0f0f",
 	),
 );
 

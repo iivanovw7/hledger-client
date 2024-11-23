@@ -1,0 +1,75 @@
+.select {
+	&__icon {
+		@include sizer(rem(22px));
+		@include justify-align-flex(center, center);
+	}
+
+	&__content {
+		@include border-radius($border-radius-x-small);
+
+		color: var(--text-primary);
+		background-color: var(--background-primary);
+		border: rem(1px) solid var(--divider-dark);
+		transform-origin: var(--kb-select-content-transform-origin);
+		animation: select-content-hide 250ms ease-in forwards;
+	}
+
+	&__content[data-expanded] {
+		animation: select-content-show 250ms ease-out;
+	}
+
+	&__trigger {
+		@include sizer(100%, rem(36px));
+		@include border-radius($border-radius-x-small);
+		@include p(1, 1, 1, 2);
+		@include justify-align-flex(space-between, center);
+
+		transition: $transition-border-color;
+		display: inline-flex;
+		outline: none;
+		border: rem(1px) solid transparent;
+
+		&:focus-visible {
+			@include focus-outline(outline);
+		}
+
+		&--color-primary {
+			color: var(--text-primary);
+			border-color: var(--divider);
+			background-color: var(--background-primary);
+
+			&:disabled {
+				background-color: var(--divider);
+			}
+
+			&:hover:enabled {
+				border-color: var(--divider-light);
+			}
+		}
+
+		&--color-secondary {
+			color: var(--secondary-color);
+			border-color: var(--secondary);
+			background-color: var(--secondary);
+
+			&:disabled {
+				background-color: var(--divider);
+			}
+
+			&:hover:enabled {
+				background-color: var(--secondary-hover);
+			}
+		}
+	}
+
+	&__value {
+		@include ellipsis;
+	}
+
+	&__listbox {
+		@include p(1);
+
+		overflow-y: auto;
+		max-height: rem(360px);
+	}
+}

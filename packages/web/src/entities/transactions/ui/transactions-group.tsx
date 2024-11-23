@@ -24,7 +24,9 @@ export const TransactionGroup = (properties: TransactionGroupProperties) => {
 		<div class={cls.transactionGroup.block()}>
 			<div class={cls.transactionGroup.header()}>
 				<h4>{formattedDate().date}</h4>
-				<span class={cls.transactionGroup.headerMonth()}>{formattedDate().postfix}</span>
+				{formattedDate().postfix && (
+					<span class={cls.transactionGroup.headerMonth()}>{formattedDate().postfix}</span>
+				)}
 			</div>
 			<For each={properties.transactions}>
 				{(transaction) => (

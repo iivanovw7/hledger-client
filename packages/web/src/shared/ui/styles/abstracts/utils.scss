@@ -1,3 +1,5 @@
+/* stylelint-disable scss/at-if-no-null */
+
 @charset "UTF-8";
 
 @use "sass:map";
@@ -20,7 +22,7 @@
 
 	@if list.index($list, $value) {
 		@return $value;
-	} @else if meta.type-of($value) == "number" and not math.unitless($value) {
+	} @else if meta.type-of($value) == "number" and not math.is-unitless($value) {
 		@return $value;
 	} @else {
 		@warn 'Please pass some values with unit like `#{$value}px`, `#{$value}em`, or `#{$value}%` etc. or pass one of the following arguments: `auto`, ìnherit`, ìnitial` or `0`.';
@@ -41,4 +43,16 @@
 	} @else if list.length($value) > 4 {
 		@error "You've passed #{length($value)} arguments. Please do not pass more than 4.";
 	}
+}
+
+@function null($value, $seperation: comma, $skip: false) {
+	$list: ();
+	@for $i from 1 through list.length($value) {
+		@if list.nth($value, $i) == null {
+			$list: list.append($list, if($skip, null, 0), $seperation);
+		} @else {
+			$list: list.append($list, list.nth($value, $i), $seperation);
+		}
+	}
+	@return $list;
 }

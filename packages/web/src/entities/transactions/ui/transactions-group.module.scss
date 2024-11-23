@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .transaction-group {
 	display: flex;
 	flex-direction: column;
@@ -12,7 +14,12 @@
 	}
 
 	&__header-month {
-		color: var(--primary);
+		@include p(1, 0);
+		@include mx(2);
+		@include border-radius($border-radius-x-small);
+
+		color: var(--text);
+		border-bottom: rem(2px) solid var(--tertiary);
 	}
 
 	&__card {

@@ -8,6 +8,8 @@ declare namespace AccountCardModuleScssNamespace {
 		"account-card__content-item": string;
 		"account-card__content-item-text": string;
 		"account-card__label": string;
+		"account-card__content-value": string;
+		"account-card__label-value": string;
 		"account-card__label-icon": string;
 		"account-card__label-text": string;
 	}

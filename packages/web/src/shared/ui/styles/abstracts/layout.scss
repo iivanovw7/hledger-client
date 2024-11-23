@@ -6,6 +6,8 @@
 @use "sass:map";
 @use "sass:list";
 @use "sizer" as *;
+@use "border-radius" as *;
+@use "variables" as *;
 
 @mixin justify-align-flex($justify: flex-start, $align: flex-start) {
 	display: flex;
@@ -32,10 +34,11 @@
 	}
 
 	&::-webkit-scrollbar-thumb {
+		@include border-radius($border-radius-xx-large);
+
 		background: $foreground-color;
 		background-color: $thumb-color;
 		border: 3px solid $thumb-border-color;
-		border-radius: 20px;
 	}
 
 	&::-webkit-scrollbar-track {

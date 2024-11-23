@@ -1,0 +1,14 @@
+.statistics-chart {
+	@include sizer(100%, rem(512px));
+
+	position: relative;
+	max-width: 100%;
+	overflow: hidden;
+
+	&__empty-data {
+		@include sizer(100%, auto);
+		@include center;
+
+		text-align: center;
+	}
+}

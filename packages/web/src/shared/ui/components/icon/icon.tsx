@@ -2,7 +2,7 @@ import { splitProps } from "solid-js";
 
 import type { Size } from "#/styles";
 
-import { bem, findOr } from "@/shared";
+import { bem, findOr, mergeDefaultProperties } from "@/shared";
 import icons from "virtual:svg-icons-names";
 
 import type { IconName } from "./icon.type";
@@ -23,12 +23,14 @@ export type IconProperties = {
 
 const PREFIX: Readonly<string> = "icon";
 
-const getIcon = (id: string): string => {
+const getIcon = (id?: string): string => {
 	return findOr(`${PREFIX}-no-icon`, (value) => value === `${PREFIX}-${id}`, icons);
 };
 
 export const Icon: Component<IconProperties> = (properties) => {
-	let [local, rest] = splitProps(properties, [
+	let mergedProperties = mergeDefaultProperties({ size: "medium" }, properties);
+
+	let [local, rest] = splitProps(mergedProperties, [
 		"name",
 		"containerClass",
 		"class",
@@ -38,11 +40,11 @@ export const Icon: Component<IconProperties> = (properties) => {
 		"rounded",
 	]);
 
-	let size = local.size || "medium";
 	let sizes = {
-		sizeLarge: size === "large",
-		sizeMedium: size === "medium",
-		sizeSmall: size === "small",
+		sizeLarge: local.size === "large",
+		sizeMedium: local.size === "medium",
+		sizeSmall: local.size === "small",
+		sizeXSmall: local.size === "x-small",
 	};
 
 	return (

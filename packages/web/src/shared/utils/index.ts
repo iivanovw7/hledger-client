@@ -10,4 +10,5 @@ export * from "./list";
 export * from "./make-api-request";
 export * from "./properties";
 export * from "./string";
+export * from "./stub";
 export * from "./validate";

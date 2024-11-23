@@ -4,5 +4,6 @@
  */
 
 export * from "./is-function";
+export * from "./is-null";
 export * from "./is-number";
 export * from "./is-string";

@@ -23,7 +23,7 @@ export const TransactionsGroupList = (properties: TransactionsGroupListPropertie
 	});
 
 	return (
-		<div class={cls.transactionsGroupList.block()}>
+		<div class={cls.transactionsGroupList.block()} tabindex={-1}>
 			<For each={transactionLists()}>
 				{({ current: [date, transactions], previous }) => (
 					<TransactionGroup

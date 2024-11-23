@@ -5,9 +5,10 @@
 	color: var(--nav-link);
 	text-decoration: none;
 	width: rem(40px);
+	outline: none;
 
 	&:not([data-disabled]):focus-visible {
-		@include focus-outline;
+		@include focus-outline(outline);
 	}
 
 	&:not([data-disabled]):hover {
@@ -41,6 +42,8 @@
 	}
 
 	&__icon-box {
+		@include border-radius($border-radius-x-small);
+
 		background-color: transparent;
 	}
 }
