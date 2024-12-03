@@ -4,8 +4,6 @@ declare namespace SelectModuleScssNamespace {
 	export interface ISelectModuleScss {
 		select__icon: string;
 		select__content: string;
-		"select-content-hide": string;
-		"select-content-show": string;
 		select__trigger: string;
 		"select__trigger--color-primary": string;
 		"select__trigger--color-secondary": string;

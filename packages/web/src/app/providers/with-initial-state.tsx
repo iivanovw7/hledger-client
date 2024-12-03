@@ -21,9 +21,11 @@ export const withInitialState = (Cmp: ParentComponent): Component => {
 		let { actions: statisticsActions } = useStatisticsStore();
 
 		createEffect(async () => {
-			await accountsActions.loadAccountNames(loadingParameters);
-			await accountsActions.loadAccounts(loadingParameters);
-			await transactionsActions.loadTransactions(loadingParameters);
+			await Promise.all([
+				accountsActions.loadAccountNames(loadingParameters),
+				accountsActions.loadAccounts(loadingParameters),
+				transactionsActions.loadTransactions(loadingParameters),
+			]);
 
 			statisticsActions.setChartMonthSetting(transactionsState.transactionsUniqueMonths.at(-1));
 

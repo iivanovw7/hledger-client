@@ -1,7 +1,7 @@
 import type { SelectRootProps, SelectValueProps } from "@kobalte/core/select";
+import { Select as SelectRoot } from "@kobalte/core/select";
 
 import { bem, Icon, mergeDefaultProperties } from "@/shared";
-import { Select as SelectRoot } from "@kobalte/core/select";
 
 import { SelectItem } from "./select-item";
 

@@ -8,4 +8,9 @@
 	overflow-y: auto;
 	outline: none;
 	height: 100%;
+	position: relative;
+
+	&__tabs-list {
+		margin: 0 rem(-8px);
+	}
 }

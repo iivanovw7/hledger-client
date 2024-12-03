@@ -1,2 +1,2 @@
 export { useStatisticsStore, withStatisticsStore } from "./model";
-export { StatisticsPreview } from "./ui";
+export { StatisticsPreview, StatisticsToolbar } from "./ui";

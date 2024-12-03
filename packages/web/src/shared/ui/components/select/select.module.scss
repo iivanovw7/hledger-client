@@ -39,11 +39,9 @@
 			background-color: var(--background-primary);
 
 			&:disabled {
-				background-color: var(--divider);
-			}
-
-			&:hover:enabled {
-				border-color: var(--divider-light);
+				color: var(--divider-dark);
+				border-color: var(--divider-dark);
+				background-color: var(--primary-background-disabled);
 			}
 		}
 
@@ -53,10 +51,20 @@
 			background-color: var(--secondary);
 
 			&:disabled {
+				color: var(--divider-dark);
+				border-color: var(--divider-dark);
 				background-color: var(--divider);
 			}
+		}
 
-			&:hover:enabled {
+		@media (hover: hover) {
+			/* stylelint-disable-next-line max-nesting-depth */
+			&--color-primary:hover:enabled {
+				border-color: var(--divider-light);
+			}
+
+			/* stylelint-disable-next-line max-nesting-depth */
+			&--color-secondary:hover:enabled {
 				background-color: var(--secondary-hover);
 			}
 		}

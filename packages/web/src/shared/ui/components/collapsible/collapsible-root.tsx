@@ -1,5 +1,4 @@
 import type { CollapsibleRootProps } from "@kobalte/core/collapsible";
-
 import { Root } from "@kobalte/core/collapsible";
 
 export type CollapsibleRootProperties = {

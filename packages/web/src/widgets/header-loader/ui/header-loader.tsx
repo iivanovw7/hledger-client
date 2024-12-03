@@ -14,6 +14,7 @@ const loadingParameters: LoadingParameters = {
 };
 
 export type HeaderLoaderProperties = {
+	children?: JSX.Element | JSX.Element[];
 	subtitle?: string;
 };
 
@@ -31,26 +32,29 @@ export const HeaderLoader = (properties: HeaderLoaderProperties) => {
 
 	return (
 		<div class={cls.headerLoader.block()}>
-			<div class={cls.headerLoader.content()}>
-				{settingsStore.state.updatedLast && (
-					<span>
-						<span class={cls.headerLoader.text()}>Last updated: </span>
-						<span class={cls.headerLoader.textDate()}>
-							{settingsStore.state.updatedLast.toFormat("MM/dd/yyyy hh:mm:ss a")}
+			<div class={cls.headerLoader.header()}>
+				<div class={cls.headerLoader.content()}>
+					{settingsStore.state.updatedLast && (
+						<span>
+							<span class={cls.headerLoader.text()}>Last updated: </span>
+							<span class={cls.headerLoader.textDate()}>
+								{settingsStore.state.updatedLast.toFormat("MM/dd/yyyy hh:mm:ss a")}
+							</span>
 						</span>
-					</span>
-				)}
-				{properties.subtitle && <span class={cls.headerLoader.subtitle()}>{properties.subtitle}</span>}
+					)}
+					{properties.subtitle && <span class={cls.headerLoader.subtitle()}>{properties.subtitle}</span>}
+				</div>
+				<div class={cls.headerLoader.controls()}>
+					<Button
+						color="primary"
+						disabled={settingsStore.state.progressQueue > 0}
+						fill="none"
+						icon="refresh-cw"
+						onClick={handleClick}
+					/>
+				</div>
 			</div>
-			<div class={cls.headerLoader.controls()}>
-				<Button
-					color="primary"
-					disabled={settingsStore.state.progressQueue > 0}
-					fill="none"
-					icon="refresh-cw"
-					onClick={handleClick}
-				/>
-			</div>
+			{properties.children}
 		</div>
 	);
 };

@@ -7,6 +7,7 @@ const { cls } = bem(css);
 export type HeaderProperties = {
 	actions?: JSXElement;
 	actionsClass?: string;
+	children?: string;
 	class?: string;
 	containerClass?: string;
 	title?: string;
@@ -22,5 +23,6 @@ export const Header: Component<HeaderProperties> = (properties) => (
 			</div>
 			<div class={cls.header.actions(null, properties.actions)}>{properties.actions}</div>
 		</div>
+		{properties.children}
 	</header>
 );

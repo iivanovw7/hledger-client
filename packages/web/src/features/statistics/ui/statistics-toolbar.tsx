@@ -15,7 +15,7 @@ export const StatisticsToolbar = () => {
 	let { actions, state } = useStatisticsStore();
 	let { state: transactionsState } = useTransactionsStore();
 
-	let isFirstMonth = () => state.chartSetting[state.chartPeriod] === transactionsState.transactionsUniqueMonths[0];
+	let isFirstMonth = () => state.chartSetting[state.chartPeriod] === transactionsState.transactionsUniqueMonths.at(0);
 	let isLastMonth = () => state.chartSetting[state.chartPeriod] === transactionsState.transactionsUniqueMonths.at(-1);
 
 	let handlePeriodChange = (period: Nullable<StatsChartPeriod>) => {
@@ -58,7 +58,7 @@ export const StatisticsToolbar = () => {
 					icon="chevron-left"
 					onClick={() => handleMonthChange("prev")}
 				/>
-				<div>{state.chartSetting[state.chartPeriod]}</div>
+				<div class="">{state.chartSetting[state.chartPeriod]}</div>
 				<Button
 					color="primary"
 					disabled={isLastMonth()}
@@ -69,11 +69,32 @@ export const StatisticsToolbar = () => {
 			</div>
 			<div class={cls.statisticsToolbar.rightSection()}>
 				<Select<StatsChartPeriod>
+					disabled
 					onChange={handlePeriodChange}
 					options={StatsChartPeriods}
 					value={state.chartPeriod}
 				/>
 			</div>
+			<Portal>
+				<div class={cls.statisticsToolbar.floatingSection()}>
+					<Button
+						color="primary"
+						disabled={isFirstMonth()}
+						fill="full"
+						icon="chevron-left"
+						iconSize="medium"
+						onClick={() => handleMonthChange("prev")}
+					/>
+					<Button
+						color="primary"
+						disabled={isLastMonth()}
+						fill="full"
+						icon="chevron-right"
+						iconSize="medium"
+						onClick={() => handleMonthChange("next")}
+					/>
+				</div>
+			</Portal>
 		</div>
 	);
 };

@@ -3,6 +3,7 @@
 declare namespace StatisticsChartModuleScssNamespace {
 	export interface IStatisticsChartModuleScss {
 		"statistics-chart": string;
+		"statistics-chart__header": string;
 		"statistics-chart__empty-data": string;
 	}
 }

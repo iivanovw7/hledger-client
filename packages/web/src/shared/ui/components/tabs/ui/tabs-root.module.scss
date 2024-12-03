@@ -1,0 +1,7 @@
+.tabs-root {
+	width: 100%;
+}
+
+.tabs-root[data-orientation="vertical"] {
+	display: flex;
+}

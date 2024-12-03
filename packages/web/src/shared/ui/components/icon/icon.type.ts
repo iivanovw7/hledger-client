@@ -5,6 +5,7 @@ export type IconName =
 	| "banknote"
 	| "chart-area"
 	| "check"
+	| "chevron-down"
 	| "chevron-left"
 	| "chevron-right"
 	| "chevrons-up-down"

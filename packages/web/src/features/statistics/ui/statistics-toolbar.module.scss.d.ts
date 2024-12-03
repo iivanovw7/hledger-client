@@ -5,6 +5,7 @@ declare namespace StatisticsToolbarModuleScssNamespace {
 		"statistics-toolbar": string;
 		"statistics-toolbar__left-section": string;
 		"statistics-toolbar__right-section": string;
+		"statistics-toolbar__floating-section": string;
 	}
 }
 

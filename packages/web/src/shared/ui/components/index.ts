@@ -16,3 +16,5 @@ export type { SelectProperties } from "./select";
 export { Select } from "./select";
 export { Spinner } from "./spinner";
 export type { SpinnerProperties } from "./spinner";
+export type { TabsContentProperties, TabsListProperties, TabsRootProperties, TabsTriggerProperties } from "./tabs";
+export { Tabs } from "./tabs";

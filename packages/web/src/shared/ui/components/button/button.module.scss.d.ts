@@ -10,7 +10,6 @@ declare namespace ButtonModuleScssNamespace {
 		"button__icon--align-center": string;
 		"button__icon--align-end": string;
 		button__loader: string;
-		rotation: string;
 		button__text: string;
 		"button__text--align-center": string;
 		"button__text--align-start": string;

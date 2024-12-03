@@ -1,7 +1,7 @@
 import type { CollapsibleTriggerProps } from "@kobalte/core/collapsible";
+import { Trigger } from "@kobalte/core/collapsible";
 
 import { bem } from "@/shared";
-import { Trigger } from "@kobalte/core/collapsible";
 
 import css from "./collapsible-trigger.module.scss";
 

@@ -1,7 +1,7 @@
 import type { SelectItemProps } from "@kobalte/core/select";
+import { Select as SelectRoot } from "@kobalte/core/select";
 
 import { bem, Icon } from "@/shared";
-import { Select as SelectRoot } from "@kobalte/core/select";
 
 import css from "./select-item.module.scss";
 

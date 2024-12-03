@@ -30,6 +30,7 @@
 		"@solid-primitives/refs": "1.0.8",
 		"@solid-primitives/utils": "6.2.3",
 		"@solidjs/router": "0.14.9",
+		"@tanstack/solid-table": "8.20.5",
 		"axios": "1.7.7",
 		"chart.js": "4.4.6",
 		"chartjs-plugin-datalabels": "2.2.0",

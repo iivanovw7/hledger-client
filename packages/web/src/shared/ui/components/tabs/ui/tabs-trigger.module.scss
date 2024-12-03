@@ -1,0 +1,16 @@
+.tabs-trigger {
+	@include p(2, 3);
+
+	display: inline-block;
+	outline: none;
+
+	&:focus-visible {
+		@include focus-outline(outline);
+	}
+
+	&[data-disabled],
+	&[data-disabled]:hover {
+		opacity: 50%;
+		background-color: transparent;
+	}
+}

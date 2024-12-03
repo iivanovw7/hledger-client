@@ -1,0 +1,31 @@
+.tabs-list {
+	position: relative;
+	display: flex;
+
+	&[data-orientation="horizontal"] {
+		align-items: center;
+		border-bottom: rem(1px) solid var(--divider);
+	}
+
+	&[data-orientation="vertical"] {
+		flex-direction: column;
+		align-items: stretch;
+		border-right: rem(1px) solid var(--divider);
+	}
+
+	&__indicator {
+		position: absolute;
+		background-color: var(--primary);
+		transition: all 250ms;
+	}
+
+	&__indicator[data-orientation="horizontal"] {
+		bottom: rem(-1px);
+		height: rem(2px);
+	}
+
+	&__indicator[data-orientation="vertical"] {
+		right: rem(-1px);
+		width: rem(2px);
+	}
+}

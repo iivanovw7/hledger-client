@@ -3,7 +3,7 @@
 	border-left: rem(3px) solid var(--account-card-border-color);
 	background-color: var(--background-primary);
 
-	&:focus-within {
+	&:has(.account-card__toggle:focus-visible) {
 		@include focus-outline;
 	}
 

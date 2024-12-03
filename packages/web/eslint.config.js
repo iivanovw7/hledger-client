@@ -67,24 +67,27 @@ export default defineFlatConfig([
 				{
 					customGroups: {
 						type: {
-							charts: ["chart.js*, chartjs*"],
-							kobalte: ["@kobalte*"],
+							charts: ["chart.js*", "chartjs*"],
+							kobalte: ["@kobalte*", "@kobalte/core/*"],
 							luxon: ["luxon"],
 							ramda: ["ramda", "ramda-adjunct"],
 							solid: ["@solid*", "solid*", "solid-js/web", "@solid-primitives/*", "solid-presence"],
+							tanstack: ["@tanstack*"],
 						},
 						value: {
-							charts: ["chart.js*, chartjs*"],
-							kobalte: ["@kobalte*"],
+							charts: ["chart.js*", "chartjs*"],
+							kobalte: ["@kobalte*", "@kobalte/core/*"],
 							luxon: ["luxon"],
 							ramda: ["ramda", "ramda-adjunct"],
 							solid: ["@solid*", "solid*", "solid-js/web", "@solid-primitives/*", "solid-presence"],
+							tanstack: ["@tanstack*"],
 						},
 					},
 					environment: "node",
 					groups: [
 						"solid",
 						"kobalte",
+						"tanstack",
 						"luxon",
 						"ramda",
 						"charts",

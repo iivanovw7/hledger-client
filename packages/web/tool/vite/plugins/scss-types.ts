@@ -50,9 +50,7 @@ export const configScssTypesPlugin = (options: ConfigScssTypesPluginOptions): Pl
 			for (let file of scssFiles) {
 				let fileContent = await fs.readFile(file, "utf8");
 
-				if (!fileContent) continue;
-
-				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData);
+				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData, file);
 
 				await generateDTS(file, compiledCss);
 			}
@@ -63,7 +61,7 @@ export const configScssTypesPlugin = (options: ConfigScssTypesPluginOptions): Pl
 
 				if (!fileContent) return;
 
-				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData);
+				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData, file);
 
 				await generateDTS(file, compiledCss);
 			}
@@ -88,13 +86,15 @@ const resolveAdditionalData = (data: string, alias: Alias) => {
 		.join("\n");
 };
 
-const compileCss = (fileContent: string, resolvedAdditionalScssData: string) => {
+const compileCss = (fileContent: string, resolvedAdditionalScssData: string, filePath: string): string => {
 	let combinedContent = resolvedAdditionalScssData + fileContent;
 
-	return sass.compileString(combinedContent, {
-		loadPaths: [path.resolve(process.cwd(), "src")],
+	let result = sass.compileString(combinedContent, {
+		loadPaths: [path.dirname(filePath), path.resolve(process.cwd(), "src")],
 		style: "expanded",
-	}).css;
+	});
+
+	return result.css;
 };
 
 const findScssFiles = async (directory: string): Promise<string[]> => {
@@ -117,6 +117,7 @@ const findScssFiles = async (directory: string): Promise<string[]> => {
 const generateDTS = async (file: string, css: string) => {
 	let typesFile = path.resolve(path.dirname(file), `${path.basename(file)}.d.ts`);
 	let classNames: Record<string, string> = {};
+	let keyframeNames = new Set<string>();
 
 	await postcss([
 		postcssModules({
@@ -124,21 +125,29 @@ const generateDTS = async (file: string, css: string) => {
 				Object.assign(classNames, json);
 			},
 		}),
+		{
+			Once: (root) => {
+				root.walkAtRules("keyframes", (rule) => {
+					keyframeNames.add(rule.params);
+				});
+			},
+			postcssPlugin: "filter-keyframes",
+		},
 	]).process(css, { from: undefined });
 
+	let filteredClassNames = Object.keys(classNames).filter((name) => !keyframeNames.has(name));
 	let name = capitalize(toCamelCase(path.basename(file, ".module.scss")));
 
 	let interfaceName = `I${name}ModuleScss`;
 	let namespaceName = `${name}ModuleScssNamespace`;
 	let moduleName = `${name}ModuleScssModule`;
-	let classNameKeys = Object.keys(classNames);
 
 	let typeDefinition = `
 		/* eslint-disable */
 		// Generated file.
 		declare namespace ${namespaceName} {
 			export interface ${interfaceName} {
-				${classNameKeys.map(wrapString).join("\n")}
+				${filteredClassNames.map(wrapString).join("\n")}
 			}
 		}
 

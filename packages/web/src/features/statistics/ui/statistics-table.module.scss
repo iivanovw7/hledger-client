@@ -1,0 +1,102 @@
+.statistics-table {
+	@include text-setting(sm);
+
+	border: rem(1px) solid var(--divider-dark);
+	width: 100%;
+
+	&__container {
+		@include justify-align-flex(center, flex-start);
+		@include p(3, 0, 5, 0);
+
+		position: relative;
+		width: 100%;
+	}
+
+	&__th,
+	&__td {
+		@include p(rem(4px), 2);
+
+		border-bottom: rem(1px) solid var(--divider-dark);
+		border-right: rem(1px) solid var(--divider-dark);
+	}
+
+	&__th {
+		@include text-setting(sm);
+		@include py(1);
+
+		font-weight: bold;
+	}
+
+	&__td {
+		@include p(0, 2);
+
+		max-height: rem(30px);
+		vertical-align: top;
+
+		&:has(.collapsible-trigger:focus-visible) {
+			@include focus-outline;
+		}
+	}
+
+	&__th.label {
+		text-align: start;
+	}
+
+	&__th.value {
+		width: rem(110px);
+	}
+
+	&__th.percentage,
+	&__th.value {
+		text-align: end;
+	}
+
+	&__td.label {
+		@include ellipsis;
+
+		display: table-cell;
+	}
+
+	&__td.percentage {
+		width: rem(56px);
+		text-align: end;
+		letter-spacing: rem(2px);
+	}
+
+	&__td.value {
+		text-align: end;
+	}
+
+	&__label-cell {
+		@include sizer(100%, rem(30px));
+	}
+
+	&__label-cell-container {
+		@include p(1, 2);
+
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__cell {
+		@include p(1, 0);
+
+		height: 100%;
+
+		span {
+			@include p(0, 1);
+		}
+	}
+
+	&__percentage-cell {
+		@include p(1, 0);
+
+		span {
+			@include p(0, 1);
+			@include border-radius($border-radius-x-small);
+
+			background: var(--color);
+			color: var(--text-inversed);
+		}
+	}
+}

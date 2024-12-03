@@ -3,6 +3,7 @@
 declare namespace StatisticsPreviewModuleScssNamespace {
 	export interface IStatisticsPreviewModuleScss {
 		"statistics-preview": string;
+		"statistics-preview__tabs-list": string;
 	}
 }
 

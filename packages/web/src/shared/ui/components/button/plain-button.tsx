@@ -1,5 +1,6 @@
-import { mergeDefaultProperties } from "@/shared";
 import { Button } from "@kobalte/core/button";
+
+import { mergeDefaultProperties } from "@/shared";
 
 export type PlainButtonProperties = {
 	children?: JSX.Element | JSX.Element[];

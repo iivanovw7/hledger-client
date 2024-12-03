@@ -5,6 +5,14 @@
 	max-width: 100%;
 	overflow: hidden;
 
+	&__header {
+		@include m(2, 2, 2, 0);
+		@include pb(1);
+
+		border-bottom: rem(2px) solid var(--tertiary);
+		width: fit-content;
+	}
+
 	&__empty-data {
 		@include sizer(100%, auto);
 		@include center;

@@ -1,0 +1,24 @@
+.table-list {
+	@include text-setting(xs);
+
+	display: flex;
+	flex-direction: column;
+
+	&__element {
+		@include justify-align-flex(space-between, center);
+
+		flex-flow: row nowrap;
+		width: 100%;
+	}
+
+	&__element-section {
+		display: flex;
+		gap: rem(4px);
+
+		@include only(first) {
+			@include ellipsis;
+
+			width: 70%;
+		}
+	}
+}

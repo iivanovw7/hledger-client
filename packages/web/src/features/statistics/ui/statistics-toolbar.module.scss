@@ -14,4 +14,13 @@
 	&__right-section {
 		width: rem(148px);
 	}
+
+	&__floating-section {
+		@include position(absolute, auto rem(20px) rem(96px) auto);
+		@include justify-align-flex(center, center);
+
+		display: flex;
+		flex-direction: row;
+		gap: rem(18px);
+	}
 }

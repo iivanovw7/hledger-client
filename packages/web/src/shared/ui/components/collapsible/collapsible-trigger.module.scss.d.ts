@@ -3,6 +3,7 @@
 declare namespace CollapsibleTriggerModuleScssNamespace {
 	export interface ICollapsibleTriggerModuleScss {
 		"collapsible-trigger": string;
+		"icon-container": string;
 	}
 }
 

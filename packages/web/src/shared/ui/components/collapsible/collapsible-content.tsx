@@ -1,7 +1,7 @@
 import type { CollapsibleContentProps } from "@kobalte/core/collapsible";
+import { Content } from "@kobalte/core/collapsible";
 
 import { bem } from "@/shared";
-import { Content } from "@kobalte/core/collapsible";
 
 import css from "./collapsible-content.module.scss";
 
