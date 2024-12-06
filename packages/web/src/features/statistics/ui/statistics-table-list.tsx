@@ -1,5 +1,3 @@
-import { DateTime } from "luxon";
-
 import { bem } from "@/shared";
 
 import type { MonthTableAccountData } from "../lib";
@@ -18,14 +16,13 @@ export const StatisticsTableList: Component<StatatisticsTableListProperties> = (
 	return (
 		<ul class={cls.tableList.block()}>
 			{data.map((transaction) => (
-				<li class={cls.tableList.element()}>
+				<li class={cls.tableList.container()}>
 					<div class={cls.tableList.elementSection()}>
-						<span>{DateTime.fromISO(transaction.date).toFormat("dd MMM")} - </span>
 						<span>{transaction.description}</span>
-					</div>
-					<div class={cls.tableList.elementSection()}>
-						<span>{transaction.commodity}</span>
-						<span>{transaction.value}</span>
+						<span>
+							<span>{transaction.commodity}</span>
+							<span>{transaction.value}</span>
+						</span>
 					</div>
 				</li>
 			))}

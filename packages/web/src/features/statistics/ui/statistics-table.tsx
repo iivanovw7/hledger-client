@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/solid-table";
 
 import { useTransactionsStore } from "@/entities";
-import { bem, Collapsible, Icon } from "@/shared";
+import { bem } from "@/shared";
 import { createSolidTable, flexRender, getCoreRowModel } from "@tanstack/solid-table";
 
 import type { MonthTableAccountData, MonthTableData } from "../lib";
@@ -58,78 +58,72 @@ export const StatisticsTable: Component = () => {
 
 	return (
 		<div class={cls.statisticsTable.container()}>
-			<table class={cls.statisticsTable.block()}>
-				<thead>
-					<For each={table.getHeaderGroups()}>
-						{(headerGroup) => (
-							<tr>
-								<For each={headerGroup.headers}>
-									{(header) => {
-										let content = flexRender(header.column.columnDef.header, header.getContext());
+			<div class={cls.statisticsTable.tableWrapper()}>
+				<table class={cls.statisticsTable.block()}>
+					<thead>
+						<For each={table.getHeaderGroups()}>
+							{(headerGroup) => (
+								<tr>
+									<For each={headerGroup.headers}>
+										{(header) => {
+											let content = flexRender(
+												header.column.columnDef.header,
+												header.getContext(),
+											);
 
-										return (
-											<th class={cls.statisticsTable.th(null, header.column.id)}>
-												{header.isPlaceholder ? null : content}
-											</th>
-										);
-									}}
-								</For>
-							</tr>
-						)}
-					</For>
-				</thead>
-				<tbody>
-					<For each={table.getRowModel().rows}>
-						{(row) => (
-							<tr>
-								<For each={row.getVisibleCells()}>
-									{(cell) => {
-										let content = flexRender(cell.column.columnDef.cell, cell.getContext());
+											return (
+												<th class={cls.statisticsTable.th(null, header.column.id)}>
+													{header.isPlaceholder ? null : content}
+												</th>
+											);
+										}}
+									</For>
+								</tr>
+							)}
+						</For>
+					</thead>
+					<tbody>
+						<For each={table.getRowModel().rows}>
+							{(row) => (
+								<tr>
+									<For each={row.getVisibleCells()}>
+										{(cell) => {
+											let content = flexRender(cell.column.columnDef.cell, cell.getContext());
 
-										return (
-											<td
-												class={cls.statisticsTable.td(null, cell.column.id)}
-												style={{ "--color": cell.row.original.color }}>
-												<Switch
-													fallback={
-														<div class={cls.statisticsTable.cell()}>
-															<span>{content}</span>
-														</div>
-													}>
-													<Match when={cell.column.id === "percentage"}>
-														<div class={cls.statisticsTable.percentageCell()}>
-															<span>{content}</span>
-														</div>
-													</Match>
-													<Match when={cell.column.id === "label"}>
-														<Collapsible>
-															<Collapsible.Trigger
-																class={cls.statisticsTable.labelCell()}>
+											return (
+												<td
+													class={cls.statisticsTable.td(null, cell.column.id)}
+													style={{ "--color": cell.row.original.color }}>
+													<Switch
+														fallback={
+															<div class={cls.statisticsTable.cell()}>{content}</div>
+														}>
+														<Match when={cell.column.id === "percentage"}>
+															<div class={cls.statisticsTable.percentageCell()}>
 																<span>{content}</span>
-																<Icon
-																	containerClass="icon-container"
-																	name="chevron-down"
-																	size="small"
-																/>
-															</Collapsible.Trigger>
-															<Collapsible.Content
-																class={cls.statisticsTable.labelCellContainer()}>
+															</div>
+														</Match>
+														<Match when={cell.column.id === "label"}>
+															<span class={cls.statisticsTable.labelCell()}>
+																{content}
+															</span>
+															<div class={cls.statisticsTable.labelCellContainer()}>
 																<StatisticsTableList
 																	data={cell.row.original.ptransactions}
 																/>
-															</Collapsible.Content>
-														</Collapsible>
-													</Match>
-												</Switch>
-											</td>
-										);
-									}}
-								</For>
-							</tr>
-						)}
-					</For>
-				</tbody>
-			</table>
+															</div>
+														</Match>
+													</Switch>
+												</td>
+											);
+										}}
+									</For>
+								</tr>
+							)}
+						</For>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 };

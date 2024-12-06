@@ -4,6 +4,7 @@ declare namespace StatisticsTableModuleScssNamespace {
 	export interface IStatisticsTableModuleScss {
 		"statistics-table": string;
 		"statistics-table__container": string;
+		"statistics-table__table-wrapper": string;
 		"statistics-table__th": string;
 		"statistics-table__td": string;
 		"collapsible-trigger": string;

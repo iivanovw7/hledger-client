@@ -4,21 +4,27 @@
 	display: flex;
 	flex-direction: column;
 
+	&__container {
+		@include ellipsis;
+
+		display: flex;
+		flex-direction: column;
+	}
+
 	&__element {
 		@include justify-align-flex(space-between, center);
 
 		flex-flow: row nowrap;
 		width: 100%;
+		white-space: nowrap;
 	}
 
 	&__element-section {
-		display: flex;
+		@include ellipsis;
+		@include justify-align-flex(space-between, center);
+		@include p(0, 2);
+
 		gap: rem(4px);
-
-		@include only(first) {
-			@include ellipsis;
-
-			width: 70%;
-		}
+		width: 100%;
 	}
 }
