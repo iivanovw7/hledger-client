@@ -32,6 +32,7 @@
 		@include py(1);
 
 		font-weight: bold;
+		width: 100px;
 	}
 
 	&__td {
@@ -75,17 +76,25 @@
 	}
 
 	&__label-cell {
-		@include sizer(100%, rem(30px));
+		@include pb(1);
+		@include text-setting(sm);
+
+		white-space: normal;
+		word-wrap: break-word;
+		padding-top: rem(2px);
+		min-height: rem(24px);
 	}
 
 	&__label-cell-container {
-		@include p(1, 0);
+		@include p(0);
 
+		width: calc(100vw - 210px);
 		display: flex;
 		flex-direction: column;
 	}
 
-	&__cell {
+	&__price-cell {
+		@include text-setting(sm);
 		@include p(1, 0);
 
 		display: flex;
@@ -93,10 +102,13 @@
 		flex-wrap: nowrap;
 		height: 100%;
 		white-space: nowrap;
+		width: rem(80px);
 	}
 
 	&__percentage-cell {
 		@include p(1, 0);
+
+		width: rem(42px);
 
 		span {
 			@include p(0, 1);

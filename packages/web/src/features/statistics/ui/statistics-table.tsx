@@ -39,6 +39,7 @@ const defaultColumns: ColumnDef<MonthTableAccountData>[] = [
 export const StatisticsTable: Component = () => {
 	let { state } = useStatisticsStore();
 	let { state: transactionsState } = useTransactionsStore();
+
 	let [tableData, setTableData] = createSignal<MonthTableData>({
 		data: [],
 		total: 0,
@@ -96,7 +97,7 @@ export const StatisticsTable: Component = () => {
 													style={{ "--color": cell.row.original.color }}>
 													<Switch
 														fallback={
-															<div class={cls.statisticsTable.cell()}>{content}</div>
+															<div class={cls.statisticsTable.priceCell()}>{content}</div>
 														}>
 														<Match when={cell.column.id === "percentage"}>
 															<div class={cls.statisticsTable.percentageCell()}>
@@ -104,10 +105,10 @@ export const StatisticsTable: Component = () => {
 															</div>
 														</Match>
 														<Match when={cell.column.id === "label"}>
-															<span class={cls.statisticsTable.labelCell()}>
-																{content}
-															</span>
 															<div class={cls.statisticsTable.labelCellContainer()}>
+																<span class={cls.statisticsTable.labelCell()}>
+																	{content}
+																</span>
 																<StatisticsTableList
 																	data={cell.row.original.ptransactions}
 																/>

@@ -13,7 +13,7 @@ declare namespace StatisticsTableModuleScssNamespace {
 		percentage: string;
 		"statistics-table__label-cell": string;
 		"statistics-table__label-cell-container": string;
-		"statistics-table__cell": string;
+		"statistics-table__price-cell": string;
 		"statistics-table__percentage-cell": string;
 	}
 }

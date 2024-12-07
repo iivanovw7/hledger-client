@@ -20,11 +20,18 @@
 	}
 
 	&__element-section {
-		@include ellipsis;
 		@include justify-align-flex(space-between, center);
-		@include p(0, 2);
+		@include p(0);
 
+		color: var(--text-primary-darken);
+		height: rem(14px);
 		gap: rem(4px);
 		width: 100%;
+	}
+
+	&__element-section > span {
+		@include only(first) {
+			@include ellipsis;
+		}
 	}
 }
