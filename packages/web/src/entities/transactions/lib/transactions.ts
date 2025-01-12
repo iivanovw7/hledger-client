@@ -41,3 +41,9 @@ export const collectUniqueMonths = pipe(
 export const parseUniqueMonth = (month: string) => {
 	return DateTime.fromFormat(month, "MMMM yyyy");
 };
+
+export const filterByAccountName = (transactions: Transaction[], accountName: string) => {
+	return transactions.filter((transaction) => {
+		return transaction.tpostings.some((posting) => posting.paccount === accountName);
+	});
+};

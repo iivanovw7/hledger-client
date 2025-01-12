@@ -80,7 +80,7 @@
 	}
 }
 
-@keyframes select-content-show {
+@keyframes dropdown-content-show {
 	0% {
 		opacity: 0%;
 		transform: translateY(-8px);
@@ -92,7 +92,7 @@
 	}
 }
 
-@keyframes select-content-hide {
+@keyframes dropdown-content-hide {
 	0% {
 		opacity: 100%;
 		transform: translateY(0);

@@ -2,6 +2,7 @@ export * from "./api";
 export * from "./config";
 export * from "./hoc";
 export * from "./log";
+export * from "./storage";
 export * from "./stores";
 export * from "./stores/init-stores";
 export * from "./ui";

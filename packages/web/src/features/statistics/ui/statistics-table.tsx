@@ -5,6 +5,7 @@ import { bem } from "@/shared";
 import { createSolidTable, flexRender, getCoreRowModel } from "@tanstack/solid-table";
 
 import type { MonthTableAccountData, MonthTableData } from "../lib";
+import type { TransactionType } from "../model/models";
 
 import { getMonthTableData } from "../lib";
 import { useStatisticsStore } from "../model";
@@ -36,7 +37,11 @@ const defaultColumns: ColumnDef<MonthTableAccountData>[] = [
 	},
 ];
 
-export const StatisticsTable: Component = () => {
+export type StatisticsTableProperties = {
+	type: TransactionType;
+};
+
+export const StatisticsTable: Component<StatisticsTableProperties> = (properties) => {
 	let { state } = useStatisticsStore();
 	let { state: transactionsState } = useTransactionsStore();
 
@@ -54,7 +59,7 @@ export const StatisticsTable: Component = () => {
 	});
 
 	createEffect(() => {
-		setTableData(getMonthTableData(transactionsState.transactions, state.chartSetting.Monthly));
+		setTableData(getMonthTableData(transactionsState.transactions, state.chartSetting.Monthly, properties.type));
 	});
 
 	return (

@@ -6,8 +6,10 @@ import type { TransactionUniqueMonth } from "@/entities";
 import type { Posting, Transaction } from "#/api";
 import type { Nullable } from "#/utils";
 
-import { getTransactionDate, isSpendingTransaction, parseUniqueMonth } from "@/entities";
+import { getTransactionDate, isIncomingTransaction, isSpendingTransaction, parseUniqueMonth } from "@/entities";
 import { env } from "@/shared";
+
+import { TransactionType } from "../model/models";
 
 export type DataDescription = {
 	commodity: string;
@@ -23,23 +25,37 @@ export type LabelledData = {
 	ptransactions_: DataDescription[][];
 };
 
+const TransactionPrefix = {
+	[TransactionType.EXPENSES]: "expenses:",
+	[TransactionType.INCOMES]: "income:",
+};
+
+const TransactionFilter = {
+	[TransactionType.EXPENSES]: isSpendingTransaction,
+	[TransactionType.INCOMES]: isIncomingTransaction,
+};
+
 const filterByMonth = (monthDate: DateTime) => (transaction: Transaction) => {
 	return getTransactionDate(transaction).hasSame(monthDate, "month");
 };
 
-export const getMonthData = (transactions: Transaction[], month: Nullable<TransactionUniqueMonth>) => {
+export const getMonthData = (
+	transactions: Transaction[],
+	month: Nullable<TransactionUniqueMonth>,
+	type: TransactionType,
+) => {
 	let monthDate: DateTime = ifElse(isNil, always(DateTime.now()), parseUniqueMonth)(month as string);
 
-	return pipe(filter(isSpendingTransaction), filter(filterByMonth(monthDate)))(transactions);
+	return pipe(filter(TransactionFilter[type]), filter(filterByMonth(monthDate)))(transactions);
 };
 
 type Accumulator = Record<string, { commodity: string; ptransactions_: DataDescription[]; value: number }>;
 
-export const getLabelledData = (transactionsInMonth: Transaction[]) => {
+export const getLabelledData = (transactionsInMonth: Transaction[], type: TransactionType) => {
 	return pipe(
 		chain((transaction: Transaction) => {
 			return transaction.tpostings.filter((posting) => {
-				return posting.paccount.startsWith("expenses:");
+				return posting.paccount.startsWith(TransactionPrefix[type]);
 			});
 		}),
 		map(({ paccount, pamount, ptransaction_ }: Posting) => {
@@ -55,7 +71,7 @@ export const getLabelledData = (transactionsInMonth: Transaction[]) => {
 				accumulator[label] = { commodity, ptransactions_: [], value: 0 };
 			}
 
-			accumulator[label].value += value;
+			accumulator[label].value += Math.abs(value);
 
 			let transaction = transactionsInMonth.find((t) => t.tindex.toString() === ptransaction_);
 

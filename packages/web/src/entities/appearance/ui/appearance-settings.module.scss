@@ -1,0 +1,24 @@
+.appearance-settings {
+	@include justify-align-flex;
+	@include pt(1);
+
+	flex-direction: column;
+	width: 100%;
+	gap: rem(16px);
+
+	&__section {
+		@include justify-align-flex(space-between, center);
+
+		flex-direction: row;
+		width: 100%;
+	}
+
+	&__select {
+		@include sizer(rem(160px), auto);
+	}
+
+	&__checkbox,
+	&__checkbox-label-container {
+		width: 100%;
+	}
+}

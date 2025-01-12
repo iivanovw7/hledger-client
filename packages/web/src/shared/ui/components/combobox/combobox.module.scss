@@ -1,0 +1,133 @@
+.combobox {
+	&__control {
+		@include sizer(100%, rem(36px));
+		@include border-radius($border-radius-x-small);
+		@include p(1, 1, 1, 2);
+		@include justify-align-flex(space-between, center);
+
+		transition: $transition-border-color;
+		display: inline-flex;
+		outline: none;
+		border: rem(1px) solid transparent;
+
+		&:focus-visible {
+			@include focus-outline(outline);
+		}
+
+		&--color-primary {
+			color: var(--control-primary);
+			border-color: var(--control-border-primary);
+			background-color: var(--control-background-primary);
+
+			&:disabled {
+				color: var(--control-disabled-primary);
+				border-color: var(--control-disabled-border-primary);
+				background-color: var(--control-disabled-backgound-primary);
+			}
+		}
+
+		&--color-secondary {
+			color: var(--secondary-color);
+			border-color: var(--secondary);
+			background-color: var(--secondary);
+
+			&:disabled {
+				color: var(--divider-dark);
+				border-color: var(--divider-dark);
+				background-color: var(--primary-background-disabled);
+			}
+		}
+
+		@media (hover: hover) {
+			/* stylelint-disable-next-line max-nesting-depth */
+			&--color-primary:hover:enabled {
+				border-color: var(--control-hover-border-primary);
+			}
+
+			/* stylelint-disable-next-line max-nesting-depth */
+			&--color-secondary:hover:enabled {
+				border-color: var(--select-hover-border-secondary);
+			}
+		}
+	}
+
+	&__control-righ-section {
+		@include justify-align-flex(flex-end, center);
+		@include sizer(rem(64px), 100%);
+
+		flex-direction: row;
+	}
+
+	&__clear {
+		@include sizer(rem(24px));
+	}
+
+	&__input {
+		@include pl(2);
+		@include border-radius($border-radius-x-small);
+
+		appearance: none;
+		display: inline-flex;
+		min-width: 0;
+		min-height: rem(40px);
+		background: transparent;
+		outline: none;
+	}
+
+	&__input::placeholder {
+		color: var(--text-secondary);
+	}
+
+	&__trigger {
+		@include border-radius($border-radius-x-small);
+		@include p(1);
+		@include sizer(rem(22px));
+		@include justify-align-flex(center, center);
+
+		appearance: none;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		width: auto;
+		outline: none;
+		line-height: 0;
+
+		&--color-primary {
+			color: var(--control-primary);
+		}
+
+		&--color-secondary {
+			color: var(--secondary-color);
+		}
+	}
+
+	&__icon {
+		@include sizer(rem(22px));
+		@include justify-align-flex(center, center);
+	}
+
+	&__content {
+		@include border-radius($border-radius-x-small);
+
+		color: var(--text-primary);
+		background-color: var(--background-primary);
+		border: rem(1px) solid var(--divider-dark);
+		transform-origin: var(--kb-select-content-transform-origin);
+		animation: dropdown-content-hide 250ms ease-in forwards;
+	}
+
+	&__content[data-expanded] {
+		animation: dropdown-content-show 250ms ease-out;
+	}
+
+	&__listbox {
+		@include p(2);
+
+		overflow-y: auto;
+		max-height: rem(360px);
+	}
+
+	&__listbox:focus {
+		outline: none;
+	}
+}

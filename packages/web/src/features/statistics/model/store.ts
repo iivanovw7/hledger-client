@@ -8,7 +8,7 @@ export type StatisticsStoreState = {
 	chartPeriod: StatsChartPeriod;
 	chartSetting: {
 		[StatsChartPeriod.MONTHLY]: Nullable<string>;
-		[StatsChartPeriod.WEEKLY]: number;
+		[StatsChartPeriod.WEEKLY]: Nullable<string>;
 	};
 };
 
@@ -27,7 +27,7 @@ const createStatisticsStore = (): StatisticsStore => {
 		chartPeriod: StatsChartPeriod.MONTHLY,
 		chartSetting: {
 			[StatsChartPeriod.MONTHLY]: null,
-			[StatsChartPeriod.WEEKLY]: 10,
+			[StatsChartPeriod.WEEKLY]: null,
 		},
 	});
 

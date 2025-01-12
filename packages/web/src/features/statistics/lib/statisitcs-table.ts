@@ -6,6 +6,7 @@ import type { Nullable } from "#/utils";
 
 import { reduceIndexed } from "@/shared";
 
+import type { TransactionType } from "../model/models";
 import type { DataDescription } from "./statistics";
 
 import { generateColors, getLabelledData, getMonthData } from "./statistics";
@@ -27,9 +28,10 @@ export type MonthTableData = {
 export const getMonthTableData = (
 	transactions: Transaction[],
 	month: Nullable<TransactionUniqueMonth>,
+	type: TransactionType,
 ): MonthTableData => {
-	let transactionsInMonth = getMonthData(transactions, month);
-	let labelledData = getLabelledData(transactionsInMonth);
+	let transactionsInMonth = getMonthData(transactions, month, type);
+	let labelledData = getLabelledData(transactionsInMonth, type);
 	let total = sum(labelledData.data);
 	let colors = generateColors(labelledData.labels.length);
 

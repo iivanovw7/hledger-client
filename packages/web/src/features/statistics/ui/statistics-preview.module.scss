@@ -1,14 +1,24 @@
 .statistics-preview {
-	@include justify-align-flex(flex-start, flex-start);
-	@include p(1, 2);
 	@include my(2);
 
-	flex-direction: column;
-	gap: rem(10px);
-	overflow-y: auto;
-	outline: none;
 	height: 100%;
-	position: relative;
+
+	&__list {
+		@include justify-align-flex(flex-start, flex-start);
+		@include py(1);
+		@include my(2);
+
+		flex-direction: column;
+		gap: rem(10px);
+		overflow: hidden auto;
+		outline: none;
+		position: relative;
+		height: calc(100% - rem(200px));
+	}
+
+	&__tabs {
+		@include py(2);
+	}
 
 	&__tabs-list {
 		margin: 0 rem(-8px);

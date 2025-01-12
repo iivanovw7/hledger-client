@@ -15,6 +15,7 @@ const loadingParameters: LoadingParameters = {
 
 export type HeaderLoaderProperties = {
 	children?: JSX.Element | JSX.Element[];
+	gutterBottom?: boolean;
 	subtitle?: string;
 };
 
@@ -31,7 +32,7 @@ export const HeaderLoader = (properties: HeaderLoaderProperties) => {
 	};
 
 	return (
-		<div class={cls.headerLoader.block()}>
+		<div class={cls.headerLoader.block({ gutterBottom: properties.gutterBottom })}>
 			<div class={cls.headerLoader.header()}>
 				<div class={cls.headerLoader.content()}>
 					{settingsStore.state.updatedLast && (

@@ -94,11 +94,10 @@
 	}
 
 	&__price-cell {
+		@include justify-align-flex(flex-end, auto);
 		@include text-setting(sm);
 		@include p(1, 0);
 
-		display: flex;
-		justify-content: flex-end;
 		flex-wrap: nowrap;
 		height: 100%;
 		white-space: nowrap;

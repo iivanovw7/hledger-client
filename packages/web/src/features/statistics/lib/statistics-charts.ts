@@ -8,6 +8,7 @@ import type { AnyObject, Nullable } from "#/utils";
 
 import { env } from "@/shared";
 
+import type { TransactionType } from "../model/models";
 import type { LabelledData } from "./statistics";
 
 import { generateColors, getLabelledData, getMonthData } from "./statistics";
@@ -95,9 +96,10 @@ export const getBarChartDataOptions = (labelledData: LabelledData): Nullable<Bar
 export const getMonthChartData = (
 	transactions: Transaction[],
 	month: Nullable<TransactionUniqueMonth>,
+	type: TransactionType,
 ): MonthChartData => {
-	let transactionsInMonth = getMonthData(transactions, month);
-	let labelledData = getLabelledData(transactionsInMonth);
+	let transactionsInMonth = getMonthData(transactions, month, type);
+	let labelledData = getLabelledData(transactionsInMonth, type);
 
 	return {
 		commodities: labelledData.commodities,
@@ -107,7 +109,7 @@ export const getMonthChartData = (
 					backgroundColor: generateColors(labelledData.data.length),
 					borderWidth: 1,
 					data: labelledData.data,
-					label: "Expenses",
+					label: type,
 				},
 			],
 			labels: labelledData.labels,

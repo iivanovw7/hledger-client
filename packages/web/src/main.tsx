@@ -10,7 +10,6 @@ import "./shared/ui/styles/main.scss";
 const { App } = lazyImport(() => import("./app"));
 const { logLevel } = config;
 const { isDevelopment } = env;
-
 const MOUNT_NODE = document.body;
 const logger = getLogger("Main");
 

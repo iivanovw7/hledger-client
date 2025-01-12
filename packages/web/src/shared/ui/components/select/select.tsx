@@ -10,6 +10,7 @@ import css from "./select.module.scss";
 const { cls } = bem(css);
 
 export type SelectProperties<Option> = {
+	class?: string;
 	/** @default "primary" */
 	color?: "primary" | "secondary";
 	renderValue?: SelectValueProps<Option>["children"];

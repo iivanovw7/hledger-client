@@ -7,12 +7,18 @@ import css from "./transactions-group-record.module.scss";
 const { cls } = bem(css);
 
 export type TransactionGroupRecordProperties = {
+	filter?: string;
 	posting: TransactionPosting;
 };
 
 export const TransactionGroupRecord = (properties: TransactionGroupRecordProperties) => (
 	<div class={cls.transactionGroupRecord.block()}>
-		<span>{properties.posting.paccount}</span>
+		<span
+			class={cls.transactionGroupRecord.accountName({
+				isHighlighted: properties.filter === properties.posting.paccount,
+			})}>
+			{properties.posting.paccount}
+		</span>
 		<For each={properties.posting.pamount}>
 			{(pamount) => (
 				<span class={cls.transactionGroupRecord.value()}>

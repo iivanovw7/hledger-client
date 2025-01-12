@@ -1,14 +1,15 @@
 .statistics-toolbar {
 	@include justify-align-flex(space-between, center);
+	@include p(0, 2, 2, 0);
 
 	flex-direction: row;
 	width: 100%;
+	border-bottom: 1px solid var(--divider-dark);
 
 	&__left-section {
 		@include justify-align-flex(space-between, center);
 		@include text-setting(base);
-
-		width: rem(220px);
+		@include sizer(rem(220px), rem(36px));
 	}
 
 	&__right-section {

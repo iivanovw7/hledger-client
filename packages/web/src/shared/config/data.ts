@@ -34,7 +34,7 @@ export const getConfig = (env: TConfigEnv) => {
 			/**
 			 * If true, truies to detect transaction direction by account prefix.
 			 */
-			showTransationDirection: true,
+			showTransactionDirection: true,
 			/**
 			 * Throttle delay in `ms`.
 			 */

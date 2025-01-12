@@ -49,7 +49,6 @@ export const configScssTypesPlugin = (options: ConfigScssTypesPluginOptions): Pl
 
 			for (let file of scssFiles) {
 				let fileContent = await fs.readFile(file, "utf8");
-
 				let compiledCss = compileCss(fileContent, resolvedAdditionalScssData, file);
 
 				await generateDTS(file, compiledCss);

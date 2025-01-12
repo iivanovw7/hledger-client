@@ -8,7 +8,7 @@ export const Accounts = () => {
 	return (
 		<PageLayout>
 			<Header title="Accounts" />
-			<HeaderLoader subtitle={`${state.accountsCount} accounts in total`} />
+			<HeaderLoader gutterBottom subtitle={`${state.accountsCount} accounts in total`} />
 			<AccountCardList accounts={state.accountRootItems} />
 		</PageLayout>
 	);

@@ -4,6 +4,8 @@ import type { LoadingType } from "#/common";
 import type { Theme } from "#/styles";
 import type { Nullable } from "#/utils";
 
+import { storage } from "../storage";
+
 declare global {
 	type IGlobalStore = {
 		settings: SettingsStore;
@@ -13,6 +15,7 @@ declare global {
 type SettingsSoreState = {
 	progressQueue: number;
 	theme: Theme;
+	transactionsHighlight: boolean;
 	updatedLast: Nullable<DateTime>;
 	waitQueue: number;
 };
@@ -22,6 +25,7 @@ type SettingsStoreActions = {
 	completeWait: () => void;
 	setGlobalLoading: (type: LoadingType) => (isLoading: boolean) => void;
 	setTheme: (theme: Theme) => void;
+	setTransactionsHighlight: (highlight: boolean) => void;
 	setUpdatedLast: (date: Nullable<DateTime>) => void;
 	startWait: () => void;
 	stopWait: () => void;
@@ -35,7 +39,8 @@ export type SettingsStore = {
 const createSettingsStore = (): SettingsStore => {
 	let [state, setState] = createStore<SettingsSoreState>({
 		progressQueue: 0,
-		theme: "dark",
+		theme: storage.getTheme() || "dark",
+		transactionsHighlight: storage.getTransactionsHighlight(),
 		updatedLast: null,
 		waitQueue: 0,
 	});
@@ -113,6 +118,11 @@ const createSettingsStore = (): SettingsStore => {
 			},
 			setTheme: (theme: Theme) => {
 				setState("theme", theme);
+				storage.setTheme(theme);
+			},
+			setTransactionsHighlight: (isEnabled: boolean) => {
+				setState("transactionsHighlight", isEnabled);
+				storage.setTransactionsHighlight(isEnabled);
 			},
 			setUpdatedLast,
 			startWait,

@@ -1,11 +1,16 @@
 .header-loader {
-	@include p(2, 2, 3);
+	@include p(2, 2, 0);
 	@include justify-align-flex(center, flex-start);
 
 	flex-direction: column;
 	border-top: rem(2px) solid transparent;
-	border-bottom: rem(2px) solid var(--divider-dark);
 	gap: rem(8px);
+
+	&--gutter-bottom {
+		@include pb(3);
+
+		border-bottom: rem(1px) solid var(--divider-dark);
+	}
 
 	&__header {
 		@include justify-align-flex(center, flex-start);

@@ -1,11 +1,15 @@
 export { Button, PlainButton } from "./button";
 export type { ButtonProperties, PlainButtonProperties } from "./button";
+export type { CheckboxProperties } from "./checkbox";
+export { Checkbox } from "./checkbox";
 export type {
 	CollapsibleContentProperties,
 	CollapsibleRootProperties,
 	CollapsibleTriggerProperties,
 } from "./collapsible";
 export { Collapsible } from "./collapsible";
+export type { ComboboxProperties } from "./combobox";
+export { Combobox } from "./combobox";
 export { Icon } from "./icon";
 export type { IconName, IconProperties } from "./icon";
 export { PageLayout } from "./layouts";

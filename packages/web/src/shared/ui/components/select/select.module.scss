@@ -11,11 +11,11 @@
 		background-color: var(--background-primary);
 		border: rem(1px) solid var(--divider-dark);
 		transform-origin: var(--kb-select-content-transform-origin);
-		animation: select-content-hide 250ms ease-in forwards;
+		animation: dropdown-content-hide 250ms ease-in forwards;
 	}
 
 	&__content[data-expanded] {
-		animation: select-content-show 250ms ease-out;
+		animation: dropdown-content-show 250ms ease-out;
 	}
 
 	&__trigger {
@@ -34,14 +34,14 @@
 		}
 
 		&--color-primary {
-			color: var(--text-primary);
-			border-color: var(--divider);
-			background-color: var(--background-primary);
+			color: var(--control-primary);
+			border-color: var(--control-border-primary);
+			background-color: var(--control-background-primary);
 
 			&:disabled {
-				color: var(--divider-dark);
-				border-color: var(--divider-dark);
-				background-color: var(--primary-background-disabled);
+				color: var(--control-disabled-primary);
+				border-color: var(--control-disabled-border-primary);
+				background-color: var(--control-disabled-backgound-primary);
 			}
 		}
 
@@ -53,25 +53,26 @@
 			&:disabled {
 				color: var(--divider-dark);
 				border-color: var(--divider-dark);
-				background-color: var(--divider);
+				background-color: var(--primary-background-disabled);
 			}
 		}
 
 		@media (hover: hover) {
 			/* stylelint-disable-next-line max-nesting-depth */
 			&--color-primary:hover:enabled {
-				border-color: var(--divider-light);
+				border-color: var(--control-hover-border-primary);
 			}
 
 			/* stylelint-disable-next-line max-nesting-depth */
 			&--color-secondary:hover:enabled {
-				background-color: var(--secondary-hover);
+				border-color: var(--select-hover-border-secondary);
 			}
 		}
 	}
 
 	&__value {
 		@include ellipsis;
+		@include text-setting(sm);
 	}
 
 	&__listbox {

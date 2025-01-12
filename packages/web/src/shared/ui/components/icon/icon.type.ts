@@ -15,4 +15,5 @@ export type IconName =
 	| "no-icon"
 	| "refresh-cw"
 	| "settings"
-	| "wallet";
+	| "wallet"
+	| "x";

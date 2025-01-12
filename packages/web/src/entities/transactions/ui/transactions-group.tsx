@@ -1,7 +1,7 @@
 import type { Transaction } from "#/api";
 import type { Nullable } from "#/utils";
 
-import { bem, config } from "@/shared";
+import { bem, settingsStore } from "@/shared";
 
 import { formatGroupDate, isIncomingTransaction, isSpendingTransaction } from "../lib";
 import { TransactionGroupRecord } from "./transactions-group-record";
@@ -9,10 +9,10 @@ import { TransactionGroupRecord } from "./transactions-group-record";
 import css from "./transactions-group.module.scss";
 
 const { cls } = bem(css);
-const { showTransationDirection } = config.ui;
 
 export type TransactionGroupProperties = {
 	date: string;
+	filter?: string;
 	previousDate: Nullable<string>;
 	transactions: Transaction[];
 };
@@ -32,12 +32,12 @@ export const TransactionGroup = (properties: TransactionGroupProperties) => {
 				{(transaction) => (
 					<div
 						class={cls.transactionGroup.card({
-							isIncome: showTransationDirection && isIncomingTransaction(transaction),
-							isSpending: showTransationDirection && isSpendingTransaction(transaction),
+							isIncome: settingsStore.state.transactionsHighlight && isIncomingTransaction(transaction),
+							isSpending: settingsStore.state.transactionsHighlight && isSpendingTransaction(transaction),
 						})}>
 						<h5 class={cls.transactionGroup.cardDescription()}>{transaction.tdescription}</h5>
 						<For each={transaction.tpostings}>
-							{(posting) => <TransactionGroupRecord posting={posting} />}
+							{(posting) => <TransactionGroupRecord filter={properties.filter} posting={posting} />}
 						</For>
 					</div>
 				)}

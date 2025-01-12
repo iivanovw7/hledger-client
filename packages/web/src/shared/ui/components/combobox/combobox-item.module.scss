@@ -1,0 +1,32 @@
+.combobox {
+	&__item {
+		@include text-setting(base);
+		@include border-radius($border-radius-x-small);
+		@include justify-align-flex(space-between, center);
+		@include p(0, 2);
+
+		color: var(--text-primary);
+		height: rem(32px);
+		position: relative;
+		user-select: none;
+		outline: none;
+	}
+
+	&__item[data-disabled] {
+		opacity: 50%;
+		pointer-events: none;
+	}
+
+	&__item[data-highlighted] {
+		outline: none;
+		background-color: var(--primary);
+		color: var(--text-inversed);
+	}
+
+	&__indicator {
+		@include sizer(rem(16px));
+		@include justify-align-flex(center, center);
+
+		display: inline-flex;
+	}
+}
