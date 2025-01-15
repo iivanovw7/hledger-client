@@ -3,7 +3,7 @@
 	@include position(fixed, auto auto 0 auto);
 	@include m(0);
 	@include p(3);
-	@include sizer(100%, null);
+	@include sizer(100%, rem(74px));
 
 	display: grid;
 	grid-template-columns: repeat(4, minmax(0, 1fr));

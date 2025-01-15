@@ -1,0 +1,36 @@
+.statistics-chart-header {
+	@include p(2);
+	@include mb(2);
+
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	background-color: var(--background-content-lighten);
+	gap: rem(8px);
+	width: 100%;
+
+	&__card {
+		@include justify-align-flex(center, center);
+
+		flex-direction: column;
+	}
+
+	&__label {
+		@include text-setting(sm);
+	}
+
+	&__value {
+		@include text-setting(sm);
+
+		&--total {
+			color: var(--primary-text);
+		}
+
+		&--incomes {
+			color: var(--accent4);
+		}
+
+		&--expences {
+			color: var(--accent1);
+		}
+	}
+}

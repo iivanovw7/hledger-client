@@ -59,6 +59,7 @@ const createTransactionsStore = (): TransactionsStore => {
 					throw errorData;
 				},
 				request: async () => {
+					setState("filter", "");
 					setTransactionsList(await hledgerWebApi.getTransactions());
 				},
 				...(parameters?.loader && {

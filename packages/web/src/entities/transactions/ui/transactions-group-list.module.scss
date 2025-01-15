@@ -5,19 +5,20 @@
 
 	&__list {
 		@include justify-align-flex(flex-start, flex-start);
-		@include p(0, 2, 1, 2);
+		@include p(0, 2, 6, 2);
 		@include my(2, 4);
 
 		flex-direction: column;
 		gap: rem(10px);
 		overflow-y: auto;
 		outline: none;
-		height: calc(100% - rem(220px));
+		height: 100%;
+		max-height: calc(100% - rem(74px));
 	}
 
 	&__header {
 		@include justify-align-flex(flex-end, center);
-		@include p(0, 2, 2);
+		@include p(0, 2, 3);
 
 		flex-direction: row;
 		width: 100%;

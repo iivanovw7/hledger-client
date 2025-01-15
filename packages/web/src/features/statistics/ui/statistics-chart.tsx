@@ -7,10 +7,11 @@ import { useTransactionsStore } from "@/entities";
 import { bem } from "@/shared";
 
 import type { MonthChartData } from "../lib";
-import type { TransactionType } from "../model/models";
 
 import { getMonthChartData } from "../lib";
 import { useStatisticsStore } from "../model";
+import { TransactionType } from "../model/models";
+import { StatisticsChartHeader } from "./statistics-chart-header";
 
 import css from "./statistics-chart.module.scss";
 
@@ -20,15 +21,20 @@ export type StatisticsChartProperties = {
 	type: TransactionType;
 };
 
+const INITAL_MONTH_CHART_DATA: MonthChartData = {
+	commodities: [],
+	data: null,
+	options: null,
+	total: 0,
+};
+
 export const StatisticsChart: Component<StatisticsChartProperties> = (properties) => {
 	let { state } = useStatisticsStore();
 	let { state: transactionsState } = useTransactionsStore();
 
-	let [chartData, setChartData] = createSignal<MonthChartData>({
-		commodities: [],
-		data: null,
-		options: null,
-		total: 0,
+	let [chartData, setChartData] = createSignal<Record<TransactionType, MonthChartData>>({
+		[TransactionType.EXPENSES]: INITAL_MONTH_CHART_DATA,
+		[TransactionType.INCOMES]: INITAL_MONTH_CHART_DATA,
 	});
 
 	onMount(() => {
@@ -36,18 +42,35 @@ export const StatisticsChart: Component<StatisticsChartProperties> = (properties
 	});
 
 	createEffect(() => {
-		setChartData(getMonthChartData(transactionsState.transactions, state.chartSetting.Monthly, properties.type));
+		setChartData({
+			[TransactionType.EXPENSES]: getMonthChartData(
+				transactionsState.transactions,
+				state.chartSetting.Monthly,
+				TransactionType.EXPENSES,
+			),
+			[TransactionType.INCOMES]: getMonthChartData(
+				transactionsState.transactions,
+				state.chartSetting.Monthly,
+				TransactionType.INCOMES,
+			),
+		});
 	});
 
 	return (
 		<div class={cls.statisticsChart.block()}>
-			{!!chartData().total && (
-				<div class={cls.statisticsChart.header()}>
-					Total expences: {chartData().total.toFixed(2)} {chartData().commodities.at(0) || ""}
-				</div>
+			{!!chartData()[properties.type].total && (
+				<StatisticsChartHeader
+					commodity={chartData()[properties.type].commodities.at(0) || ""}
+					expences={chartData()[TransactionType.EXPENSES].total}
+					incomes={chartData()[TransactionType.INCOMES].total}
+				/>
 			)}
-			{!!chartData().data?.labels?.length && chartData().options ? (
-				<Bar data={chartData().data} options={chartData().options} type="bar" />
+			{!!chartData()[properties.type].data?.labels?.length && chartData()[properties.type].options ? (
+				<Bar
+					data={chartData()[properties.type].data}
+					options={chartData()[properties.type].options}
+					type="bar"
+				/>
 			) : (
 				<div class={cls.statisticsChart.emptyData()}>
 					<p>No data available to display</p>

@@ -1,6 +1,6 @@
 .statistics-toolbar {
 	@include justify-align-flex(space-between, center);
-	@include p(0, 2, 2, 0);
+	@include p(0, 2, 3, 0);
 
 	flex-direction: row;
 	width: 100%;

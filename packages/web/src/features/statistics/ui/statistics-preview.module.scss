@@ -5,7 +5,7 @@
 
 	&__list {
 		@include justify-align-flex(flex-start, flex-start);
-		@include py(1);
+		@include py(1, 6);
 		@include my(2);
 
 		flex-direction: column;
@@ -13,7 +13,8 @@
 		overflow: hidden auto;
 		outline: none;
 		position: relative;
-		height: calc(100% - rem(200px));
+		height: 100%;
+		max-height: calc(100% - rem(74px));
 	}
 
 	&__tabs {
