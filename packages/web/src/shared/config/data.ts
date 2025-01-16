@@ -32,7 +32,7 @@ export const getConfig = (env: TConfigEnv) => {
 			 */
 			debounce: 100,
 			/**
-			 * If true, truies to detect transaction direction by account prefix.
+			 * If true, tries to detect transaction direction by account prefix.
 			 */
 			showTransactionDirection: true,
 			/**
