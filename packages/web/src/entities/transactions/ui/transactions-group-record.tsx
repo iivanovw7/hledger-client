@@ -7,6 +7,7 @@ import css from "./transactions-group-record.module.scss";
 const { cls } = bem(css);
 
 export type TransactionGroupRecordProperties = {
+	accumulatedFilteredAmount?: number;
 	filter?: string;
 	posting: TransactionPosting;
 };
@@ -18,6 +19,12 @@ export const TransactionGroupRecord = (properties: TransactionGroupRecordPropert
 				isHighlighted: properties.filter === properties.posting.paccount,
 			})}>
 			{properties.posting.paccount}
+			{properties.accumulatedFilteredAmount && (
+				<span class={cls.transactionGroupRecord.accumulatedValue()}>
+					<span>{properties.posting.pamount[0].acommodity || ""}</span>
+					<span>{properties.accumulatedFilteredAmount}</span>
+				</span>
+			)}
 		</span>
 		<For each={properties.posting.pamount}>
 			{(pamount) => (

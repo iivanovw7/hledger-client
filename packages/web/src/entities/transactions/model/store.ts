@@ -9,6 +9,7 @@ import type { TransactionDateGroups, TransactionUniqueMonth } from "./models";
 import { collectUniqueMonths, filterByAccountName, groupTransactionsByDay } from "../lib";
 
 export type TransactionsStoreState = {
+	accumulatedFilteredAmounts: Map<string, number>;
 	filter: string;
 	transactions: TransactionsResponse;
 	transactionsCount: number;
@@ -30,6 +31,7 @@ const logger = getLogger("Transactions Store");
 
 const createTransactionsStore = (): TransactionsStore => {
 	let [state, setState] = createStore<TransactionsStoreState>({
+		accumulatedFilteredAmounts: new Map<string, number>(),
 		filter: "",
 		transactions: [],
 		transactionsCount: 0,
@@ -38,11 +40,22 @@ const createTransactionsStore = (): TransactionsStore => {
 	});
 
 	let setTransactionsList = (transactions: TransactionsResponse, filter?: string) => {
-		let transactionsGroups = groupTransactionsByDay(
-			filter ? filterByAccountName(transactions, filter) : transactions,
-		);
+		let filteredTransactions: TransactionsResponse = [];
+		let accumulatedFilteredAmounts = new Map<string, number>();
+
+		if (filter) {
+			let [filtered, amounts] = filterByAccountName(transactions, filter);
+
+			filteredTransactions = filtered;
+			accumulatedFilteredAmounts = amounts;
+		} else {
+			filteredTransactions = transactions;
+		}
+
+		let transactionsGroups = groupTransactionsByDay(filteredTransactions);
 
 		setState({
+			accumulatedFilteredAmounts,
 			transactions,
 			transactionsCount: transactions.length,
 			transactionsGroups,

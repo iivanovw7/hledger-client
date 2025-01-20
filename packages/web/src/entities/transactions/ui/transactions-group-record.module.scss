@@ -14,4 +14,16 @@
 			@include ml(1);
 		}
 	}
+
+	&__accumulated-value {
+		@include ml(2);
+		@include pl(2);
+
+		color: var(--primary);
+		border-left: 1px solid var(--divider);
+	}
+
+	&__accumulated-value > span:last-of-type {
+		@include ml(1);
+	}
 }

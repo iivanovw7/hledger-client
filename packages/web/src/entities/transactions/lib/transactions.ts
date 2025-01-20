@@ -10,7 +10,7 @@ export const getTransactionDate = (transaction: Transaction): DateTime => {
 	return DateTime.fromISO(transaction.tdate);
 };
 
-const sortByRecentDate = sort(descend<Transaction>(prop("tindex")));
+export const sortByRecentDate = sort(descend<Transaction>(prop("tindex")));
 
 export const getISODate = (transaction: Transaction) => {
 	return getTransactionDate(transaction).toISODate() || "";
@@ -42,8 +42,26 @@ export const parseUniqueMonth = (month: string) => {
 	return DateTime.fromFormat(month, "MMMM yyyy");
 };
 
-export const filterByAccountName = (transactions: Transaction[], accountName: string) => {
-	return transactions.filter((transaction) => {
-		return transaction.tpostings.some((posting) => posting.paccount === accountName);
+export const filterByAccountName = (
+	transactions: Transaction[],
+	accountName: string,
+): [Transaction[], Map<string, number>] => {
+	let sorted = sortByRecentDate(transactions).reverse();
+	let accumulator = 0;
+	let accumulatedFilteredAmounts = new Map<string, number>();
+
+	let filtered = sorted.filter((transaction) => {
+		return transaction.tpostings.some((posting, index) => {
+			let isMatch = posting.paccount === accountName;
+
+			if (isMatch) {
+				accumulator += posting.pamount[0].aquantity.floatingPoint || 0;
+				accumulatedFilteredAmounts.set(`${transaction.tindex}.${index}`, accumulator);
+			}
+
+			return isMatch;
+		});
 	});
+
+	return [filtered, accumulatedFilteredAmounts];
 };

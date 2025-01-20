@@ -4,6 +4,7 @@ import type { Nullable } from "#/utils";
 import { bem, settingsStore } from "@/shared";
 
 import { formatGroupDate, isIncomingTransaction, isSpendingTransaction } from "../lib";
+import { useTransactionsStore } from "../model";
 import { TransactionGroupRecord } from "./transactions-group-record";
 
 import css from "./transactions-group.module.scss";
@@ -18,6 +19,7 @@ export type TransactionGroupProperties = {
 };
 
 export const TransactionGroup = (properties: TransactionGroupProperties) => {
+	let { state: transactionsState } = useTransactionsStore();
 	let formattedDate = createMemo(() => formatGroupDate(properties.date, properties.previousDate));
 
 	return (
@@ -37,7 +39,19 @@ export const TransactionGroup = (properties: TransactionGroupProperties) => {
 						})}>
 						<h5 class={cls.transactionGroup.cardDescription()}>{transaction.tdescription}</h5>
 						<For each={transaction.tpostings}>
-							{(posting) => <TransactionGroupRecord filter={properties.filter} posting={posting} />}
+							{(posting, index) => {
+								let accumulatedFilteredAmount = transactionsState.accumulatedFilteredAmounts.get(
+									`${transaction.tindex}.${index()}`,
+								);
+
+								return (
+									<TransactionGroupRecord
+										accumulatedFilteredAmount={accumulatedFilteredAmount}
+										filter={properties.filter}
+										posting={posting}
+									/>
+								);
+							}}
 						</For>
 					</div>
 				)}

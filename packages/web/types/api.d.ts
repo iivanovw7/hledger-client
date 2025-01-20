@@ -34,6 +34,7 @@ export type AccountNameListResponse = AccountNameResponse[];
 
 /* /transactions */
 export type Posting = {
+	accAmount?: number;
 	paccount: string;
 	pamount: Amount[];
 	pbalanceassertion?: string;
